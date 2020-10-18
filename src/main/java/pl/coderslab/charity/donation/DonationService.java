@@ -1,2 +1,5 @@
-package pl.coderslab.charity.donation;public interface DonationService {
+package pl.coderslab.charity.donation;
+
+public interface DonationService {
+    
 }

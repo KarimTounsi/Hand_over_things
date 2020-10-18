@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 @Transactional
 @Getter
 @Setter
+@Table(name = "categories")
 public class Category {
 
     @Id
