@@ -176,24 +176,4 @@ $(function () {
     if (form !== null) {
         new FormSteps(form);
     }
-
-console.log(form)
-
-    let checkboxCategory = $('.checkbox')
-    console.log(checkboxCategory.eq(1));
-    checkboxCategory.attr("status", false);
-    console.log(checkboxCategory.attr("status"))
-    checkboxCategory.on('click', function () {
-        if ($(this).attr("status") === "false") {
-            $(this).attr("status", true);
-        } else {
-            $(this).attr("status", false);
-        }
-    });
-
-    let quantityOfBags = $('.bags').val();
-
-
-console.log(quantityOfBags)
-
 });
