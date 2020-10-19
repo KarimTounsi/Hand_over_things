@@ -79,7 +79,7 @@
                 <c:forEach varStatus="theCount"  items="${categories}" var="category"  step="1" >
                 <div class="form-group form-group--checkbox">
                     <label>
-                        <input type="checkbox" name="categories" value="${category}"/>
+                        <input type="checkbox" name="categories" value="${category.id}"/>
                         <span class="checkbox"></span>
                         <span class="description">${category.name}</span>
                     </label>
@@ -97,7 +97,7 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <input type="number" name="quantity" step="1" min="1" />
+                        <input type="number" class="bags" name="quantity" step="1" min="1" />
                     </label>
                 </div>
 
@@ -115,7 +115,7 @@
                 <c:forEach varStatus="theCount"  items="${institutions}" var="institution"  step="1" >
                 <div class="form-group form-group--checkbox">
                     <label>
-                        <input type="radio" name="institution" value="${institution}" />
+                        <input type="radio" name="institution" value="${institution.id}" />
                         <span class="checkbox radio"></span>
                         <span class="description">
                   <div class="title">${institution.name}</div>
@@ -239,7 +239,7 @@
 </section>
 
 <jsp:include page="fragments/footer.jsp"/>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
 </html>
