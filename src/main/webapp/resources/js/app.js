@@ -1,6 +1,5 @@
 $(function () {
 
-    let quantityOfBags = $('.bags').innerText;
 
     /**
      * Form Select
@@ -144,6 +143,7 @@ $(function () {
 
             // Form submit
             this.$form.querySelector("form").addEventListener("submit", e => this.submit(e));
+
         }
 
         /**
@@ -172,17 +172,17 @@ $(function () {
     }
 
     const form = document.querySelector(".form--steps");
+    console.log(form)
     if (form !== null) {
         new FormSteps(form);
     }
 
-
+console.log(form)
 
     let checkboxCategory = $('.checkbox')
     console.log(checkboxCategory.eq(1));
     checkboxCategory.attr("status", false);
     console.log(checkboxCategory.attr("status"))
-
     checkboxCategory.on('click', function () {
         if ($(this).attr("status") === "false") {
             $(this).attr("status", true);
@@ -191,7 +191,9 @@ $(function () {
         }
     });
 
+    let quantityOfBags = $('.bags').val();
 
 
+console.log(quantityOfBags)
 
 });
