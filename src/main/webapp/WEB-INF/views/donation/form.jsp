@@ -15,7 +15,7 @@
 <body>
 <header class="header--form-page">
 
-    <jsp:include page="fragments/header.jsp"/>
+    <jsp:include page="../fragments/header.jsp"/>
 
     <div class="slogan container container--90">
         <div class="slogan--item">
@@ -232,7 +232,7 @@
     </div>
 </section>
 
-<jsp:include page="fragments/footer.jsp"/>
+<jsp:include page="../fragments/footer.jsp"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 <script src="<c:url value="/resources/js/app2.js"/>"></script>

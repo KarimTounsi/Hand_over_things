@@ -3,17 +3,14 @@ package pl.coderslab.charity.donation;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.category.Category;
 import pl.coderslab.charity.category.CategoryService;
 import pl.coderslab.charity.institution.Institution;
 import pl.coderslab.charity.institution.InstitutionService;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -30,7 +27,7 @@ public class DonationController {
 
         model.addAttribute("donationDto" , new DonationDTO());
 
-        return "form";
+        return "donation/form";
     }
 
     @PostMapping("/donation/form")
@@ -38,7 +35,7 @@ public class DonationController {
 
         donationService.saveDonation(donationDTO);
 
-        return "form";
+        return "donation/form";
     }
 
 
