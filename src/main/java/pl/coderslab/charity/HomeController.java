@@ -21,11 +21,8 @@ public class HomeController {
 
     DonationService donationService;
 
-
-
     @RequestMapping("/")
     public String homeAction(Model model){
-
         return "index";
     }
 

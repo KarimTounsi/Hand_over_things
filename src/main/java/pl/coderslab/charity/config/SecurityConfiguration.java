@@ -24,11 +24,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-
-                .antMatchers("/","/js/**", "/css/**","/img/**","/WEB-INF/views/**").permitAll()
-                .antMatchers("/register").permitAll()
+                .antMatchers("/resources/**","/WEB-INF/views/**", "/register").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/donation/**").hasRole("USER")
                 .antMatchers("/login").anonymous()
-//                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -38,6 +38,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/");
     }
+
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -49,10 +51,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
-                .usersByUsernameQuery("SELECT email, password, active FROM users WHERE email = ?");
-//                .authoritiesByUsernameQuery("SELECT name, roles FROM users join user_roles ur on users.user_id = ur.user_user_id WHERE name = ?");
+                .usersByUsernameQuery("SELECT email, password, active FROM users WHERE email = ?")
+                .authoritiesByUsernameQuery("SELECT email, role FROM users WHERE email = ?");
     }
-
-
 
 }

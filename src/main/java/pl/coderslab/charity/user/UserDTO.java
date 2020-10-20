@@ -18,6 +18,7 @@ public class UserDTO {
     @Email(message = "*Podaj prawidłowy adres e-mail")
     @NotEmpty(message = "*Proszę podać e-mail")
     @NotBlank(message = "*Rubryka nie może być pusta")
+    @UniqueEmail
     private String email;
 
     @Length(min = 8, message = "*Twoje hasło musi mieć co najmniej 8 znaków")
