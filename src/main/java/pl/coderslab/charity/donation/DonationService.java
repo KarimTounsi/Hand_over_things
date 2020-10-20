@@ -8,5 +8,7 @@ public interface DonationService {
     Integer getSumOfQuantity();
 
     Integer getListSize();
+
+    void saveDonation(DonationDTO donationDTO);
     
 }

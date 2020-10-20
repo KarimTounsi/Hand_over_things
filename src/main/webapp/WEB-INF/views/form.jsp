@@ -68,7 +68,7 @@
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form:form action="" method="post">
+        <form:form action="/donation/form" method="post" modelAttribute="donationDto">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
@@ -147,11 +147,11 @@
                             </label>
                         </div>
 
-                            <%--                        <div class="form-group form-group--inline">--%>
-                            <%--                            <label>--%>
-                            <%--                                Numer telefonu <input type="phone" name="phone" />--%>
-                            <%--                            </label>--%>
-                            <%--                        </div>--%>
+                                                    <div class="form-group form-group--inline">
+                                                        <label>
+                                                            Numer telefonu <input type="text" name="phoneNumber" id="phoneNumber" />
+                                                        </label>
+                                                    </div>
                     </div>
 
                     <div class="form-section--column">
@@ -208,7 +208,7 @@
                                 <li class="street"></li>
                                 <li class="city"></li>
                                 <li class="zipCode"></li>
-<%--                                <li>123 456 789</li>--%>
+                                <li class="phoneNumber"></li>
                             </ul>
                         </div>
 
