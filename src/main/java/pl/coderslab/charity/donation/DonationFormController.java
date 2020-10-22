@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-public class DonationController {
+public class DonationFormController {
 
     CategoryService categoryService;
     InstitutionService institutionService;
@@ -35,7 +35,7 @@ public class DonationController {
 
         donationService.saveDonation(donationDTO);
 
-        return "donation/form";
+        return "redirect:/donation/confirm";
     }
 
 

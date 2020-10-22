@@ -2,34 +2,50 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <nav class="container container--70">
-    <ul class="nav--actions">
-<sec:authorize access="!isAuthenticated()">
-        <li>
-            <form class="form-inline my-2 my-lg-0" method="get" action="/login">
-            <button class="btn btn--small btn--without-border">Zaloguj</button>
-                <sec:csrfInput/>
-            </form>
-        </li>
-</sec:authorize>
-        <sec:authorize access="isAuthenticated()">
+        <sec:authorize access="!isAuthenticated()">
+            <ul class="nav--actions">
             <li>
-                <form class="form-inline my-2 my-lg-0" method="post" action="/logout">
-                <button class="btn btn--small btn--without-border">Wyloguj</button>
-                        <sec:csrfInput/>
+                <form class="form-inline my-2 my-lg-0" method="get" action="/login">
+                    <button class="btn btn--small btn--without-border">Zaloguj</button>
+                    <sec:csrfInput/>
                 </form>
             </li>
         </sec:authorize>
+        <sec:authorize access="isAuthenticated()">
+            <ul class="nav--actions">
+                <li class="logged-user">
+                        <div class="nav-div"> Witaj
+                            <strong>${pageContext.request.userPrincipal.principal.username}</strong></div>
+                    <ul class="dropdown">
+                        <li><a href="#">Profil</a></li>
+                        <li><a href="#">Moje zbiórki</a></li>
+                        <li>
+                            <form class="my-lg-0" method="post" action="/logout">
+                                <button class="btn-primary mx-auto my-sm-0" >Wyloguj</button>
+                                <sec:csrfInput/>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </sec:authorize>
+        <sec:authorize access="!isAuthenticated()">
         <li><a href="/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
     </ul>
+    </sec:authorize>
 
     <ul>
-        <li><a href="" class="btn btn--without-border active">Start</a></li>
+        <li><a href="/" class="btn btn--without-border active">Start</a></li>
         <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
         <li><a href="#" class="btn btn--without-border">O nas</a></li>
         <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
         <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
-        <li><a href="#" class="btn btn--without-border"><sec:authorize access="!isAuthenticated()">nie zalogowany</sec:authorize></a></li>
-        <li><a href="#" class="btn btn--without-border"><sec:authorize access="isAuthenticated()"> ZALOGOWANY </sec:authorize></a></li>
+<%--        <li><a href="#" class="btn btn--without-border">--%>
+<%--            --%>
+<%--            <sec:authorize--%>
+<%--                access="!isAuthenticated()">nie zalogowany</sec:authorize></a></li>--%>
+<%--        <li><a href="#" class="btn btn--without-border"><sec:authorize--%>
+<%--                access="isAuthenticated()"> ZALOGOWANY </sec:authorize></a></li>--%>
     </ul>
 </nav>
 
