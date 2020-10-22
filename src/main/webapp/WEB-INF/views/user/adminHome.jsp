@@ -16,7 +16,7 @@
 <body>
 <header class="header--main-page">
 
-    <jsp:include page="fragments/header.jsp"/>
+    <jsp:include page="../fragments/adminHeader.jsp"/>
 
     <div class="slogan container container--90">
         <div class="slogan--item">
@@ -114,7 +114,7 @@
 
 </section>
 
-<jsp:include page="fragments/footer.jsp"/>
+<jsp:include page="../fragments/footer.jsp"/>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

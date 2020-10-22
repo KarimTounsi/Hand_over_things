@@ -36,30 +36,11 @@
 
     <ul>
         <li>
-            <sec:authorize access="hasRole('ROLE_ADMIN')">
-        <li class="btn btn--without-border dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true"
-               aria-expanded="false">Strony admina
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdown02">
-                <a class="dropdown-item" href="/admin/orders/all">Zamówienia użytkowników</a>
-                <a class="dropdown-item" href="/admin/category/all">Lista kategorii</a>
-                <a class="dropdown-item" href="/admin/category/add">Dodaj kategorie</a>
-                <a class="dropdown-item" href="/admin/category/all/deleted">Lista usuniętych kategorii</a>
-                <a class="dropdown-item" href="/admin/image/image-without-relations">Lista zdjęć <br> nie dodanych do produktu</a>
-                <a class="dropdown-item" href="/admin/image/add">Dodaj zdjęcie</a>
-                <a class="dropdown-item" href="/admin/product/add">Dodaj produkt</a>
-                <a class="dropdown-item" href="/admin/product/all/deleted">Lista usuniętych produktów</a>
-            </div>
         </li>
-        </sec:authorize>
-        </li>
-        <li><a href="/" class="btn btn--without-border active">Start</a></li>
-        <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
-        <li><a href="#" class="btn btn--without-border">O nas</a></li>
-        <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
-        <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
-
+        <li><a href="/admin" class="btn btn--without-border active">Start</a></li>
+        <li><a href="#" class="btn btn--without-border">Lista fundacji</a></li>
+        <li><a href="#" class="btn btn--without-border">Lista Administratorów</a></li>
+        <li><a href="#" class="btn btn--without-border">Lista użytkowników</a></li>
 <%--        <li><a href="#" class="btn btn--without-border">--%>
 <%--            --%>
 <%--            <sec:authorize--%>

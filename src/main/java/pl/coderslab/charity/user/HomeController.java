@@ -1,4 +1,4 @@
-package pl.coderslab.charity;
+package pl.coderslab.charity.user;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.donation.DonationService;
 import pl.coderslab.charity.institution.Institution;
-import pl.coderslab.charity.institution.InstitutionRepository;
 import pl.coderslab.charity.institution.InstitutionService;
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -21,9 +21,18 @@ public class HomeController {
 
     DonationService donationService;
 
+    UserService userService;
+
     @RequestMapping("/")
-    public String homeAction(Model model){
-        return "index";
+    public String homeAction(Principal principal) {
+        if (principal != null) {
+            User user = userService.getUserByEmail(principal.getName());
+            if (user.getRole().equals("ROLE_ADMIN")) {
+                return "redirect:/admin";
+            }
+
+        }
+        return "user/home";
     }
 
     @ModelAttribute("institutions")
