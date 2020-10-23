@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -16,5 +17,20 @@ public class InstitutionServiceImpl implements InstitutionService {
     @Override
     public List<Institution> getAll() {
         return institutionRepository.findAll();
+    }
+
+    @Override
+    public Institution saveInstitution(Institution institution) {
+        return institutionRepository.save(institution);
+    }
+
+    @Override
+    public Optional<Institution> getById(Long id) {
+        return institutionRepository.findById(id);
+    }
+
+    @Override
+    public void deleteInstitution(Institution institution) {
+        institutionRepository.delete(institution);
     }
 }

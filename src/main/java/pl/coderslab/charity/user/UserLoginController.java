@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @AllArgsConstructor
 public class UserLoginController {
 
-    UserService userService;
+    private final  UserService userService;
 
     @GetMapping("/login")
     public String userLoginForm() {

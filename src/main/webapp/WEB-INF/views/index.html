@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <form>
+        <div>
+            <label for="title">tytuł</label>
+            <input id="title" type="text"/>
+        </div>
+        <div>
+            <label for="isbn">ISBN</label>
+            <input id="isbn" type="text"/>
+        </div>
+        <div>
+            <label for="author">Autor</label>
+            <input id="author" type="text"/>
+        </div>
+        <div>
+            <label for="publisher">Wydawca</label>
+            <input id="publisher" type="text"/>
+        </div>
+        <div>
+            <label for="type">Typ</label>
+            <input id="type" type="text"/>
+        </div>
+        <input data-method="POST" id="addButton" type="submit" value="Wyślij"/>
+    </form>
+</div>
+
+<div id="container" data-method="GET" >
+
+</div>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/app.js"></script>
+</html>

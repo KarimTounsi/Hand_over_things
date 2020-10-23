@@ -14,7 +14,7 @@ import javax.validation.Valid;
 @AllArgsConstructor
 public class UserRegisterController {
 
-UserService userService;
+    private final UserService userService;
 
     @GetMapping("/register")
     public String userForm(Model model ){

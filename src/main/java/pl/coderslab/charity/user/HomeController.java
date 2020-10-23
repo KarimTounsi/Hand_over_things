@@ -17,11 +17,11 @@ import java.util.List;
 @AllArgsConstructor
 public class HomeController {
 
-    InstitutionService institutionService;
+    private final InstitutionService institutionService;
 
-    DonationService donationService;
+    private final DonationService donationService;
 
-    UserService userService;
+    private final UserService userService;
 
     @RequestMapping("/")
     public String homeAction(Principal principal) {

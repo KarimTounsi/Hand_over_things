@@ -16,9 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 public class AdminHomeController {
 
-    InstitutionService institutionService;
+    private final InstitutionService institutionService;
 
-    DonationService donationService;
+    private final  DonationService donationService;
 
     @RequestMapping("/admin")
     public String homeAction(Model model){

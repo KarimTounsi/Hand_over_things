@@ -17,21 +17,21 @@ import java.util.List;
 @AllArgsConstructor
 public class DonationFormController {
 
-    CategoryService categoryService;
-    InstitutionService institutionService;
-    DonationService donationService;
+    private final CategoryService categoryService;
+    private final InstitutionService institutionService;
+    private final DonationService donationService;
 
 
     @GetMapping("/donation/form")
-    public String donationForm(Model model ){
+    public String donationForm(Model model) {
 
-        model.addAttribute("donationDto" , new DonationDTO());
+        model.addAttribute("donationDto", new DonationDTO());
 
         return "donation/form";
     }
 
     @PostMapping("/donation/form")
-    public String saveDonation(DonationDTO donationDTO){
+    public String saveDonation(DonationDTO donationDTO) {
 
         donationService.saveDonation(donationDTO);
 

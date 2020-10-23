@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <nav class="container container--70">
         <sec:authorize access="!isAuthenticated()">
@@ -37,8 +39,8 @@
     <ul>
         <li>
         </li>
-        <li><a href="/admin" class="btn btn--without-border active">Start</a></li>
-        <li><a href="#" class="btn btn--without-border">Lista fundacji</a></li>
+        <li><a href="/admin" class="btn btn--without-border">Start</a></li>
+        <li><a href="/institutions/view" class="btn btn--without-border">Lista fundacji</a></li>
         <li><a href="#" class="btn btn--without-border">Lista Administratorów</a></li>
         <li><a href="#" class="btn btn--without-border">Lista użytkowników</a></li>
 <%--        <li><a href="#" class="btn btn--without-border">--%>

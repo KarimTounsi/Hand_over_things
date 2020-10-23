@@ -24,4 +24,6 @@ public class Institution {
     @Column(name = "description")
     private String description;
 
+    private boolean status;
+
 }
