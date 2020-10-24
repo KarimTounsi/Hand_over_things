@@ -30,12 +30,18 @@ public class InstitutionServiceImpl implements InstitutionService {
     }
 
     @Override
+    public Institution saveInstitutionFromDTO(InstitutionDTO institutionDTO) {
+        Institution institution = new Institution();
+        institution.setStatus(institutionDTO.isStatus());
+        institution.setDescription(institutionDTO.getDescription());
+        institution.setName(institutionDTO.getName());
+        return institutionRepository.save(institution);
+    }
+
+    @Override
     public Optional<Institution> getById(Long id) {
         return institutionRepository.findById(id);
     }
 
-    @Override
-    public void deleteInstitution(Institution institution) {
-        institutionRepository.delete(institution);
-    }
+
 }
