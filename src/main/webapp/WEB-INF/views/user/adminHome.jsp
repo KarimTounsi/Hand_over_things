@@ -16,7 +16,7 @@
 <body>
 <header class="header--main-page">
 
-    <jsp:include page="../fragments/adminHeader.jsp"/>
+    <jsp:include page="../fragments/header2.jsp"/>
 
     <div class="slogan container container--90">
         <div class="slogan--item">

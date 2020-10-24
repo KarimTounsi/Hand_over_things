@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/institutions")
+@RequestMapping("/admin/api/institutions")
 @RequiredArgsConstructor
 @Slf4j
 public class InstitutionController {

@@ -19,33 +19,31 @@
 
 <jsp:include page="../fragments/AdminPageheader.jsp"/>
 
-
-<form class="needs-validation mt-3" novalidate>
+    <form class="needs-validation mt-3" novalidate>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-                <label for="name">Nazwa instytucji</label>
-                <input type="text" class="form-control" id="name">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email">
                 <div class="valid-tooltip">
                     Looks good!
                 </div>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="description">Opis</label>
-                <input type="text" class="form-control" id="description">
+                <label for="password">hasło</label>
+                <input type="password" class="form-control" id="password">
                 <div class="valid-tooltip">
                     Looks good!
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" id="addButton" data-method="POST" type="submit">Dodaj fundacje</button>
+        <button class="btn btn-primary" id="addButton" data-method="POST" type="submit">Dodaj admina</button>
     </form>
 
     <table class="table mt-3" >
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Nazwa instytucji</th>
-            <th scope="col">Opis</th>
+            <th scope="col">Email</th>
             <th scope="col">Edycja pól</th>
             <th scope="col">Edycja całości</th>
             <th scope="col">Usuwanie</th>
@@ -68,7 +66,7 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script src="<c:url value="/resources/js/app-rest-institutions.js"/>"></script>
+<script src="<c:url value="/resources/js/app-rest-admins.js"/>"></script>
 </body>
 </html>
 
