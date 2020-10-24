@@ -36,7 +36,7 @@ public class InstitutionController {
 
     @PostMapping
     public ResponseEntity createOne(@Valid @RequestBody
-                                            Institution institution, BindingResult errors) {
+                                            InstitutionDTO institutionDTO, BindingResult errors) {
         if (errors.hasErrors()) {
             try {
                 return ResponseEntity.badRequest().body(
@@ -50,7 +50,7 @@ public class InstitutionController {
                 e.printStackTrace();
             }
         }
-        Institution saved = institutionService.saveInstitution(institution);
+        Institution saved = institutionService.saveInstitutionFromDTO(institutionDTO);
         return ResponseEntity.created(URI.create("/api/institutions/" + saved.getId()))
                 .build();
     }
