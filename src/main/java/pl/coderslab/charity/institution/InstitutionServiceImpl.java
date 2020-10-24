@@ -21,7 +21,7 @@ public class InstitutionServiceImpl implements InstitutionService {
 
     @Override
     public List<Institution> getAllByStatus(boolean status) {
-        return institutionRepository.findAllByStatus(status);
+        return institutionRepository.findAllByStatusOrderById(status);
     }
 
     @Override

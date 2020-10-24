@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface InstitutionRepository extends JpaRepository<Institution, Long> {
 
-    List<Institution> findAllByStatus(boolean status);
+    List<Institution> findAllByStatusOrderById(boolean status);
 
 }
