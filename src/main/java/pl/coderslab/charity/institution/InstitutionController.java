@@ -27,9 +27,9 @@ public class InstitutionController {
 
 
     @GetMapping
-    public ResponseEntity<List<Institution>> findAll() {
+    public ResponseEntity<List<Institution>> findAllWithStatusTrue() {
 
-        List<Institution> institutions = institutionService.getAll();
+        List<Institution> institutions = institutionService.getAllByStatus(true);
 
         return ResponseEntity.ok(institutions);
     }
@@ -98,11 +98,15 @@ public class InstitutionController {
         Optional<Institution> optionalInstitution = institutionService.getById(id);
         if (optionalInstitution.isPresent()) {
             Institution institutionInDb = optionalInstitution.get();
-            if (updateMap.containsKey("name")){
-                institutionInDb.setName(updateMap.get("name"));
-            }else if (updateMap.containsKey("description")){
-                institutionInDb.setDescription(updateMap.get("description"));
-            }
+       if (updateMap.get("description") !="" ||  updateMap.get("name") !="") {
+           if (updateMap.containsKey("name") && updateMap.get("name") !=""){
+               institutionInDb.setName(updateMap.get("name"));
+           }
+           if (updateMap.containsKey("description") && updateMap.get("description") !=""){
+               institutionInDb.setDescription(updateMap.get("description"));
+           }
+       }
+
             institutionService.saveInstitution(institutionInDb);
         }
         return ResponseEntity.noContent().build();

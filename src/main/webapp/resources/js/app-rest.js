@@ -17,13 +17,14 @@ $(function () {
                     let newTdElement3 = $('<td>');
                     let newTdElement4 = $('<td>');
                     let newTdElement5 = $('<td>');
-                    newThElement.text(element.index);
+                    newThElement.text(element.id);
                     newTdElement1.text(element.name);
                     newTdElement2.text(element.description);
                     newTdElement3.html("<button type=\"button\" class=\"btn btn-info editInstitution\">Edycja</button>")
                     newTdElement3.attr('id', element.id).data('method', 'PATCH');
                     newTdElement4.html("<button type=\"button\" class=\"btn btn-info fullEditInstitution\">Edycja całości</button>")
                     newTdElement4.attr('id', element.id).data('method', 'PUT');
+
                     newTdElement5.html("<button type=\"button\" class=\"btn btn-danger deleteInstitution\">Usuń</button>")
                     newTdElement5.attr('id', element.id).data('method', 'DELETE');
                     newTrElement.append(newThElement).append(newTdElement1).append(newTdElement2).append(newTdElement3).append(newTdElement4).append(newTdElement5);
@@ -32,45 +33,46 @@ $(function () {
                 });
             });
         }
+
         GetAllInstitutions();
 
-            function post() {
-                $('#addButton').on('click', function (e) {
-                    e.preventDefault();
-                    let newInstitution = {
-                        name: $('#name').val(),
-                        description: $('#description').val(),
-                        status: true,
-                    };
-                    $.ajax({
-                        url: BASE_URL + "/api/institutions/",
-                        method: $(this).data('method'),
-                        data: JSON.stringify(newInstitution),
-                        contentType: 'application/json'
-                    }).done(function () {
-                        GetAllInstitutions();
-                        $('#name').val('');
-                        $('#description').val('');
-
-
-                    });
-                });
-            }
-
-            post();
-
-        function putUpdateInstitution() {
-            $('.tableInput').on('click', $('.fullEditInstitution'), function (element) {
-                element.preventDefault();
+        function post() {
+            $('#addButton').on('click', function (e) {
+                e.preventDefault();
                 let newInstitution = {
-                    id: $(this).attr('id'),
                     name: $('#name').val(),
                     description: $('#description').val(),
                     status: true,
                 };
                 $.ajax({
-                    url: BASE_URL + '/api/institutions/' + $(this).attr('id'),
+                    url: BASE_URL + "/api/institutions/",
                     method: $(this).data('method'),
+                    data: JSON.stringify(newInstitution),
+                    contentType: 'application/json'
+                }).done(function () {
+                    GetAllInstitutions();
+                    $('#name').val('');
+                    $('#description').val('');
+
+
+                });
+            });
+        }
+
+        post();
+
+        function putUpdateInstitution() {
+            $('.tableInput').on('click', '.fullEditInstitution', function (element) {
+                element.preventDefault();
+                let newInstitution = {
+                    id: $(this).parent().attr('id'),
+                    name: $('#name').val(),
+                    description: $('#description').val(),
+                    status: true,
+                };
+                $.ajax({
+                    url: BASE_URL + '/api/institutions/' + $(this).parent().attr('id'),
+                    method: $(this).parent().data('method'),
                     data: JSON.stringify(newInstitution),
                     contentType: 'application/json'
                 }).done(function () {
@@ -80,20 +82,24 @@ $(function () {
                 });
             });
         }
+
         putUpdateInstitution();
 
         function patchUpdateInstitution() {
-            $('.tableInput').on('click', $('.editInstitution'), function (element) {
+            $('.tableInput').on('click', '.editInstitution', function (element) {
+                console.log($(this).parent())
+                console.log($(this))
+                console.log($(this).parent().attr('id'))
                 element.preventDefault();
                 let newInstitution = {
-                    id: $(this).attr('id'),
+                    id: $(this).parent().attr('id'),
                     name: $('#name').val(),
                     description: $('#description').val(),
                     status: true,
                 };
                 $.ajax({
-                    url: BASE_URL + '/api/institutions/' + $(this).attr('id'),
-                    method: $(this).data('method'),
+                    url: BASE_URL + '/api/institutions/' + $(this).parent().attr('id'),
+                    method: $(this).parent().data('method'),
                     data: JSON.stringify(newInstitution),
                     contentType: 'application/json'
                 }).done(function () {
@@ -103,20 +109,43 @@ $(function () {
                 });
             });
         }
+
         patchUpdateInstitution();
 
-            function deleteInstitution() {
-                $('.tableInput').on('click', $('.deleteInstitution'), function (element) {
-                    $.ajax({
-                        url: BASE_URL + '/api/institutions/' + $(this).attr('id'),
-                        method: $(this).data('method'),
-                    }).done(function (result) {
-                        GetAllInstitutions();
-                    });
+        function deleteInstitution() {
+            $('.tableInput').on('click', '.deleteInstitution', function (element) {
+                $.ajax({
+                    url: BASE_URL + '/api/institutions/' + $(this).parent().attr('id'),
+                    method: $(this).parent().data('method'),
+                }).done(function (result) {
+                    GetAllInstitutions();
                 });
-            }
-
-            deleteInstitution();
+            });
         }
+
+        deleteInstitution();
+    }
+
     ajax();
 });
+// $('.fullEditInstitution').on('click', function (element) {
+//     console.log($(this).parent())
+//     console.log($(this))
+//     element.preventDefault();
+//     let newInstitution = {
+//         id: $(this).parent().attr('id'),
+//         name: $('#name').val(),
+//         description: $('#description').val(),
+//         status: true,
+//     };
+//     $.ajax({
+//         url: BASE_URL + '/api/institutions/' + $(this).parent().attr('id'),
+//         method: $(this).parent().data('method'),
+//         data: JSON.stringify(newInstitution),
+//         contentType: 'application/json'
+//     }).done(function () {
+//         GetAllInstitutions();
+//         $('#name').val('');
+//         $('#description').val('');
+//     });
+// });
