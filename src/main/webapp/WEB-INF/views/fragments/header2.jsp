@@ -40,9 +40,9 @@
         <li>
         </li>
         <li><a href="/admin" class="btn btn--without-border">Start</a></li>
-        <li><a href="/institutions/view" class="btn btn--without-border">Lista fundacji</a></li>
-        <li><a href="/admins/view" class="btn btn--without-border">Lista Administratorów</a></li>
-        <li><a href="#" class="btn btn--without-border">Lista użytkowników</a></li>
+        <li><a href="/admin/institutions/view" class="btn btn--without-border">Lista fundacji</a></li>
+        <li><a href="/admin/admins/view" class="btn btn--without-border">Lista Administratorów</a></li>
+        <li><a href="/admin/users/view" class="btn btn--without-border">Lista użytkowników</a></li>
 <%--        <li><a href="#" class="btn btn--without-border">--%>
 <%--            --%>
 <%--            <sec:authorize--%>

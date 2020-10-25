@@ -14,7 +14,7 @@ import java.security.Principal;
 public class InstitutionsViewController {
 
 
-    @RequestMapping("/institutions/view")
+    @RequestMapping("/admin/institutions/view")
     public ModelAndView viewInstitutions(Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("institutions/institutions");

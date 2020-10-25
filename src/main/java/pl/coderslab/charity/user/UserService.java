@@ -21,4 +21,8 @@ public interface UserService {
 
    User updateUserAdminPartially(User user);
 
+   User updateUser(User user) ;
+
+   User updateUserPartially(User user);
+
 }

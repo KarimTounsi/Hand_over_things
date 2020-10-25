@@ -7,17 +7,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
-
-
 @RestController
 @AllArgsConstructor
-public class AdminsViewController {
+public class UsersViewController {
 
 
-    @RequestMapping("/admin/admins/view")
+    @RequestMapping("/admin/users/view")
     public ModelAndView viewInstitutions() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user/admins");
+        modelAndView.setViewName("user/users");
         return modelAndView;
     }
 

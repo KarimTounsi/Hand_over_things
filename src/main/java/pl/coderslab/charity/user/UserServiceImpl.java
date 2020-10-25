@@ -79,9 +79,28 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
+    public User updateUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setActive(true);
+        user.setRole("ROLE_USER");
+        userRepository.save(user);
+        log.info("User saved: " + user);
+        return user;
+    }
+
+    @Override
     public User updateUserAdminPartially(User user) {
         user.setActive(true);
         user.setRole("ROLE_ADMIN");
+        userRepository.save(user);
+        log.info("User saved: " + user);
+        return user;
+    }
+
+    @Override
+    public User updateUserPartially(User user) {
+        user.setActive(true);
+        user.setRole("ROLE_USER");
         userRepository.save(user);
         log.info("User saved: " + user);
         return user;

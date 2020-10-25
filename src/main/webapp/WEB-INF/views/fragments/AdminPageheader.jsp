@@ -11,13 +11,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/institutions/view">Lista fundacji</a>
+                <a class="nav-link" href="/admin/institutions/view">Lista fundacji</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admins/view">Lista administratorów</a>
+                <a class="nav-link" href="/admin/admins/view">Lista administratorów</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Lista użytkowników</a>
+                <a class="nav-link" href="/admin/users/view">Lista użytkowników</a>
             </li>
         </ul>
         <%--                <li class="nav-item dropdown">--%>
