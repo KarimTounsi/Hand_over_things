@@ -24,7 +24,7 @@ public class DonationFormController {
     private final DonationService donationService;
 
 
-    @GetMapping("/donation/form")
+    @GetMapping("/user/donation/form")
     public String donationForm(Model model) {
 
         model.addAttribute("donationDto", new DonationDTO());
@@ -32,12 +32,12 @@ public class DonationFormController {
         return "donation/form";
     }
 
-    @PostMapping("/donation/form")
+    @PostMapping("/user/donation/form")
     public String saveDonation(DonationDTO donationDTO) {
 
         donationService.saveDonation(donationDTO);
 
-        return "redirect:/donation/confirm";
+        return "redirect:/user/donation/confirm";
     }
 
 

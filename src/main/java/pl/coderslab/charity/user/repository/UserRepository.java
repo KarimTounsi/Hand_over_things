@@ -16,4 +16,5 @@ public interface UserRepository  extends JpaRepository<User, Long> {
 
     User findByActiveAndRoleAndIdOrderById(Boolean status, String role, Long id);
 
+
 }

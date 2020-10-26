@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
         user.setActive(true);
         user.setRole("ROLE_ADMIN");
         userRepository.save(user);
-        log.info("User saved: " + user);
+        log.info("Admin saved: " + user);
         return user;
     }
 
@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
         user.setActive(true);
         user.setRole("ROLE_ADMIN");
         userRepository.save(user);
-        log.info("User saved: " + user);
+        log.info("Admin updated: " + user);
         return user;
     }
 
@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService {
         user.setActive(true);
         user.setRole("ROLE_USER");
         userRepository.save(user);
-        log.info("User saved: " + user);
+        log.info("User updated: " + user);
         return user;
     }
 
@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
         user.setActive(true);
         user.setRole("ROLE_ADMIN");
         userRepository.save(user);
-        log.info("User saved: " + user);
+        log.info("Admin updatedPartially: " + user);
         return user;
     }
 
@@ -107,7 +107,21 @@ public class UserServiceImpl implements UserService {
         user.setActive(true);
         user.setRole("ROLE_USER");
         userRepository.save(user);
-        log.info("User saved: " + user);
+        log.info("User updatedPartially: " + user);
+        return user;
+    }
+
+    @Override
+    public User updateUserPassword(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+        log.info("User passwordUpdated: " + user);
+        return user;
+    }
+    @Override
+    public User updateUserEmail(User user) {
+        userRepository.save(user);
+        log.info("User emailUpdated: " + user);
         return user;
     }
 

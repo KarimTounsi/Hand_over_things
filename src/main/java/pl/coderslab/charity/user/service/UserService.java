@@ -29,4 +29,7 @@ public interface UserService {
 
    User updateUserPartially(User user);
 
+    User updateUserPassword(User user);
+    User updateUserEmail(User user);
+
 }

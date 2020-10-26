@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DonationConfirmController {
 
 
-    @GetMapping("/donation/confirm")
+    @GetMapping("/user/donation/confirm")
     public String donationForm( ){
 
         return "donation/confirm";

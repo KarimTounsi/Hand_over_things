@@ -19,11 +19,13 @@
 
 <jsp:include page="../fragments/AdminPageheader.jsp"/>
 
+
     <form class="needs-validation mt-3" novalidate>
         <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="email">Email</label>
                 <input type="text" class="form-control" id="email">
+                <br> <form:errors path="email" cssClass="error"/>
                 <div class="valid-tooltip">
                     Looks good!
                 </div>
@@ -31,6 +33,7 @@
             <div class="col-md-6 mb-3">
                 <label for="password">hasło</label>
                 <input type="password" class="form-control" id="password">
+                <br> <form:errors path="password" cssClass="error"/>
                 <div class="valid-tooltip">
                     Looks good!
                 </div>
