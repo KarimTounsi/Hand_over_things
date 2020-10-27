@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.category.entity.Category;
 import pl.coderslab.charity.institution.entity.Institution;
+import pl.coderslab.charity.user.entity.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

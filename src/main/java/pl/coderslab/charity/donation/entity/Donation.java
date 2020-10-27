@@ -5,10 +5,12 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.category.entity.Category;
 import pl.coderslab.charity.institution.entity.Institution;
+import pl.coderslab.charity.user.entity.User;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -24,6 +26,12 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "donation_id")
     private Long id;
+
+    @Column(name = "created")
+    private LocalDateTime created;
+
+    @ManyToOne
+    private User user;
 
     @Column(name = "quantity")
     private Integer quantity;
@@ -56,5 +64,17 @@ public class Donation {
 
     @Column(name = "phone_Number")
     private String phoneNumber;
+
+
+    @Column(name = "receiving_status")
+    private boolean receivingStatus;
+
+    @Column(name = "pick_up")
+    private LocalDateTime pickUp;
+
+    @PrePersist
+    public void prePersist() {
+        created = LocalDateTime.now();
+    }
 
 }

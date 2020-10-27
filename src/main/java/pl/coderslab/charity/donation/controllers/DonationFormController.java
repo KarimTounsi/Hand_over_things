@@ -13,6 +13,7 @@ import pl.coderslab.charity.donation.service.DonationService;
 import pl.coderslab.charity.institution.entity.Institution;
 import pl.coderslab.charity.institution.service.InstitutionService;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -33,9 +34,9 @@ public class DonationFormController {
     }
 
     @PostMapping("/user/donation/form")
-    public String saveDonation(DonationDTO donationDTO) {
+    public String saveDonation(DonationDTO donationDTO, Principal principal) {
 
-        donationService.saveDonation(donationDTO);
+        donationService.saveDonation(donationDTO, principal);
 
         return "redirect:/user/donation/confirm";
     }

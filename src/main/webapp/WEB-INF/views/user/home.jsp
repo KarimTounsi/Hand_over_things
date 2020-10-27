@@ -90,12 +90,10 @@
 
 <section class="help">
     <h2>Komu pomagamy?</h2>
-
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
         <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
             Możesz sprawdzić czym się zajmują.</p>
-
         <ul class="help--slides-items">
             <c:forEach varStatus="theCount"  begin="1" end="${institutions.size()}" var="index"  step="2" >
                     <li>
@@ -111,7 +109,6 @@
             </c:forEach>
         </ul>
     </div>
-
 </section>
 
 <jsp:include page="../fragments/footer.jsp"/>

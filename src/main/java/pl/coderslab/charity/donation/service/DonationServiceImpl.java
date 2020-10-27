@@ -6,9 +6,13 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.charity.donation.DTOS.DonationDTO;
 import pl.coderslab.charity.donation.entity.Donation;
 import pl.coderslab.charity.donation.repository.DonationRepository;
+import pl.coderslab.charity.user.entity.User;
+import pl.coderslab.charity.user.repository.UserRepository;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -17,6 +21,7 @@ import java.util.List;
 public class DonationServiceImpl implements DonationService {
 
     DonationRepository donationRepository;
+    UserRepository userRepository;
 
     @Override
     public List<Donation> getAll() {
@@ -34,9 +39,11 @@ public class DonationServiceImpl implements DonationService {
     }
 
     @Override
-    public void saveDonation(DonationDTO donationDTO) {
+    public void saveDonation(DonationDTO donationDTO, Principal principal) {
+
         Donation donation = new Donation();
         donation.setQuantity(donationDTO.getQuantity());
+        donation.setUser(userRepository.findUserByEmail(principal.getName()));
         donation.setCategories(donationDTO.getCategories());
         donation.setInstitution(donationDTO.getInstitution());
         donation.setStreet(donationDTO.getStreet());
@@ -49,6 +56,16 @@ public class DonationServiceImpl implements DonationService {
 
         donationRepository.save(donation);
         log.info("donation saved: " + donation);
+    }
+
+    @Override
+    public List<Donation> getAllByUser(User user) {
+        return donationRepository.findAllByUser(user);
+    }
+
+    @Override
+    public Optional<Donation> getById(Long id) {
+        return donationRepository.findById(id);
     }
 
 
