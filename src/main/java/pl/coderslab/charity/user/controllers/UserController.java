@@ -40,13 +40,11 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<User>> findAllWithStatusTrue() {
 
-
         ServletUriComponentsBuilder builder = ServletUriComponentsBuilder.fromCurrentRequestUri();
         URI newUri = builder.build().toUri();
 
         System.out.println(newUri);
 //        System.out.println(request.getRequestURL().toString() + "?" + request.getQueryString());
-
 
         List<User> ListUsers = null;
 //        if () {
