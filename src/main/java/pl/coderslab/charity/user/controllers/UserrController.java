@@ -10,21 +10,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.user.DTOS.AdminDTO;
-import pl.coderslab.charity.user.entity.User;
 import pl.coderslab.charity.user.service.UserService;
+import pl.coderslab.charity.user.entity.User;
 
 import javax.validation.Valid;
-import java.net.URI;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/admin/api/admins")
+@RequestMapping("/admin/api/users")
 @RequiredArgsConstructor
 @Slf4j
-public class AdminController {
+public class UserrController {
 
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
@@ -34,32 +33,10 @@ public class AdminController {
     @GetMapping
     public ResponseEntity<List<User>> findAllWithStatusTrue() {
 
-        List<User> Admins = userService.getAllByActiveAndRoleOrderById(true, "ROLE_ADMIN");
+        List<User> Users = userService.getAllByActiveAndRoleOrderById(true, "ROLE_USER");
 
-        return ResponseEntity.ok(Admins);
+        return ResponseEntity.ok(Users);
     }
-
-    @PostMapping
-    public ResponseEntity createOne(@Valid @RequestBody
-                                            AdminDTO adminDTO, BindingResult errors) {
-        if (errors.hasErrors()) {
-            try {
-                return ResponseEntity.badRequest().body(
-                        new ObjectMapper().writeValueAsString
-                                (errors.getAllErrors()
-                                        .stream()
-                                        .collect(Collectors.toMap(
-                                                (ObjectError oE) -> oE.getCode(),
-                                                oE -> oE.getDefaultMessage()))));
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-        }
-        User saved = userService.saveUserAdmin(adminDTO);
-        return ResponseEntity.created(URI.create("/api/institutions/" + saved.getId()))
-                .build();
-    }
-
 
 
     @GetMapping("/{id}")
@@ -89,7 +66,7 @@ public class AdminController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity updateOne(@Valid @RequestBody AdminDTO adminDTO, BindingResult errors) {
+    public ResponseEntity updateOne(@Valid @RequestBody AdminDTO userDTO, BindingResult errors) {
         if (errors.hasErrors()) {
             try {
                 return ResponseEntity.badRequest().body(
@@ -104,18 +81,15 @@ public class AdminController {
             }
 
         }
-        Optional<User> optionalUser = userService.getUserById(adminDTO.getId());
+        Optional<User> optionalUser = userService.getUserById(userDTO.getId());
         if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            user.setEmail(adminDTO.getEmail());
-            user.setPassword(adminDTO.getPassword());
-            userService.updateUserAdmin(user);
+            User userDb = optionalUser.get();
+            userDb.setEmail(userDTO.getEmail());
+            userDb.setPassword(userDTO.getPassword());
+            userService.updateUser(userDb);
         }
         return ResponseEntity.noContent().build();
     }
-
-
-
 
 
     @PatchMapping("/{id}")
@@ -131,7 +105,7 @@ public class AdminController {
                user.setPassword(passwordEncoder.encode(updateMap.get("password")));
            }
        }
-            userService.updateUserAdminPartially(user);
+            userService.updateUserPartially(user);
         }
         return ResponseEntity.noContent().build();
     }

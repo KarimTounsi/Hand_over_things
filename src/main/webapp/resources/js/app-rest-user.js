@@ -1,6 +1,6 @@
 $(function () {
     let BASE_URL = 'http://localhost:8080';
-    let URL = '/admin/api/admins/';
+    let URL = '/api/user/';
 
     function ajax() {
         function GetAllAdmins() {
