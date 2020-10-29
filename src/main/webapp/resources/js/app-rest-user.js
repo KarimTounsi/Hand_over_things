@@ -1,9 +1,8 @@
 $(function () {
     let BASE_URL = 'http://localhost:8080';
     let URL = '/api/user/';
-
     function ajax() {
-        function GetAllAdmins() {
+        function GetAllUsers() {
             $('.tableInput').empty();
             $.ajax({
                 url: BASE_URL + URL,
@@ -33,33 +32,10 @@ $(function () {
             });
         }
 
-        GetAllAdmins();
-
-        function post() {
-            $('#addButton').on('click', function (e) {
-                e.preventDefault();
-                let newInstitution = {
-                    email: $('#email').val(),
-                    password: $('#password').val(),
-                };
-                $.ajax({
-                    url: BASE_URL + URL,
-                    method: $(this).data('method'),
-                    data: JSON.stringify(newInstitution),
-                    contentType: 'application/json'
-                }).done(function () {
-                    GetAllAdmins();
-                    $('#email').val('');
-                    $('#password').val('');
+        GetAllUsers();
 
 
-                });
-            });
-        }
-
-        post();
-
-        function putUpdateInstitution() {
+        function putUpdateUser() {
             $('.tableInput').on('click', '.fullEditInstitution', function (element) {
                 element.preventDefault();
                 let newInstitution = {
@@ -73,16 +49,16 @@ $(function () {
                     data: JSON.stringify(newInstitution),
                     contentType: 'application/json'
                 }).done(function () {
-                    GetAllAdmins();
+                    GetAllUsers();
                     $('#email').val('');
                     $('#password').val('');
                 });
             });
         }
 
-        putUpdateInstitution();
+        putUpdateUser();
 
-        function patchUpdateInstitution() {
+        function patchUpdateUser() {
             $('.tableInput').on('click', '.editInstitution', function (element) {
                 // console.log($(this).parent())
                 // console.log($(this))
@@ -99,28 +75,58 @@ $(function () {
                     data: JSON.stringify(newInstitution),
                     contentType: 'application/json'
                 }).done(function () {
-                    GetAllAdmins();
+                    GetAllUsers();
                     $('#email').val('');
                     $('#password').val('');
                 });
             });
         }
-
-        patchUpdateInstitution();
-
-        function deleteInstitution() {
+        patchUpdateUser();
+        function deleteUser() {
             $('.tableInput').on('click', '.deleteInstitution', function (element) {
                 $.ajax({
                     url: BASE_URL + URL + $(this).parent().attr('id'),
                     method: $(this).parent().data('method'),
                 }).done(function (result) {
-                    GetAllAdmins();
+                    GetAllUsers();
                 });
             });
         }
+        deleteUser();
 
-        deleteInstitution();
+        function GetUser() {
+            // $('.tableInput').empty();
+            $.ajax({
+                url: BASE_URL + URL + $('.id').data('id'),
+                method: $('.id').data('method'),
+                dataType: 'json'
+            }).done(function (result) {
+                $('#email').val(result.email)
+            });
+        }
+        GetUser();
+
+        function putUpdate() {
+            $('#addButton').on('click', function (element) {
+                element.preventDefault();
+                let newInstitution = {
+                    id: $('.id').data('id'),
+                    email: $('#email').val(),
+                    password: $('#password').val(),
+                };
+                $.ajax({
+                    url: BASE_URL + URL + $('.id').data('id'),
+                    method: 'PUT',
+                    data: JSON.stringify(newInstitution),
+                    contentType: 'application/json'
+                }).done(function () {
+                    $('#email').val('');
+                    $('#password').val('');
+                });
+            });
+        }
+        putUpdate();
+
     }
-
     ajax();
 });

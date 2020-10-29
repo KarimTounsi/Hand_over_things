@@ -1,4 +1,4 @@
-package pl.coderslab.charity.user.controllers;
+package pl.coderslab.charity.user.controllers.restControllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,33 +9,64 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.coderslab.charity.user.DTOS.AdminDTO;
-import pl.coderslab.charity.user.service.UserService;
 import pl.coderslab.charity.user.entity.User;
+import pl.coderslab.charity.user.service.UserService;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/admin/api/users")
+@RequestMapping("/api/admin")
 @RequiredArgsConstructor
 @Slf4j
-public class UserrController {
+public class AdminController {
 
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
 
-
     @GetMapping
     public ResponseEntity<List<User>> findAllWithStatusTrue() {
 
-        List<User> Users = userService.getAllByActiveAndRoleOrderById(true, "ROLE_USER");
+        ServletUriComponentsBuilder builder = ServletUriComponentsBuilder.fromCurrentRequestUri();
+        URI newUri = builder.build().toUri();
 
-        return ResponseEntity.ok(Users);
+        System.out.println(newUri);
+//        System.out.println(request.getRequestURL().toString() + "?" + request.getQueryString());
+        List<User> ListUsers = userService.getAllByActiveAndRoleOrderById(true, "ROLE_ADMIN");
+//        if () {
+//      
+//        } else if ()){
+//            ListUsers = userService.getAllByActiveAndRoleOrderById(true, "ROLE_USER");
+//        }
+        return ResponseEntity.ok(ListUsers);
+    }
+
+    @PostMapping
+    public ResponseEntity createOne(@Valid @RequestBody
+                                            AdminDTO adminDTO, BindingResult errors) {
+        if (errors.hasErrors()) {
+            try {
+                return ResponseEntity.badRequest().body(
+                        new ObjectMapper().writeValueAsString
+                                (errors.getAllErrors()
+                                        .stream()
+                                        .collect(Collectors.toMap(
+                                                (ObjectError oE) -> oE.getCode(),
+                                                oE -> oE.getDefaultMessage()))));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        }
+        User saved = userService.saveUserAdmin(adminDTO);
+        return ResponseEntity.created(URI.create("/api/institutions/" + saved.getId()))
+                .build();
     }
 
 
@@ -66,7 +97,7 @@ public class UserrController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity updateOne(@Valid @RequestBody AdminDTO userDTO, BindingResult errors) {
+    public ResponseEntity updateOne(@Valid @RequestBody AdminDTO adminDTO, BindingResult errors) {
         if (errors.hasErrors()) {
             try {
                 return ResponseEntity.badRequest().body(
@@ -81,12 +112,12 @@ public class UserrController {
             }
 
         }
-        Optional<User> optionalUser = userService.getUserById(userDTO.getId());
+        Optional<User> optionalUser = userService.getUserById(adminDTO.getId());
         if (optionalUser.isPresent()) {
-            User userDb = optionalUser.get();
-            userDb.setEmail(userDTO.getEmail());
-            userDb.setPassword(userDTO.getPassword());
-            userService.updateUser(userDb);
+            User user = optionalUser.get();
+            user.setEmail(adminDTO.getEmail());
+            user.setPassword(adminDTO.getPassword());
+            userService.updateUserAdmin(user);
         }
         return ResponseEntity.noContent().build();
     }
@@ -97,15 +128,15 @@ public class UserrController {
         Optional<User> optionalUser = userService.getUserById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-       if (updateMap.get("email") !="" ||  updateMap.get("password") !="") {
-           if (updateMap.containsKey("email") && updateMap.get("email") !=""){
-               user.setEmail(updateMap.get("email"));
-           }
-           if (updateMap.containsKey("password") && updateMap.get("password") !=""){
-               user.setPassword(passwordEncoder.encode(updateMap.get("password")));
-           }
-       }
-            userService.updateUserPartially(user);
+            if (updateMap.get("email") != "" || updateMap.get("password") != "") {
+                if (updateMap.containsKey("email") && updateMap.get("email") != "") {
+                    user.setEmail(updateMap.get("email"));
+                }
+                if (updateMap.containsKey("password") && updateMap.get("password") != "") {
+                    user.setPassword(passwordEncoder.encode(updateMap.get("password")));
+                }
+            }
+            userService.updateUserAdminPartially(user);
         }
         return ResponseEntity.noContent().build();
     }

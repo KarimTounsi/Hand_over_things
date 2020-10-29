@@ -1,12 +1,11 @@
-package pl.coderslab.charity.user.controllers;
+package pl.coderslab.charity.user.controllers.views;
 
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-
 
 
 @Controller
@@ -14,7 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminsViewController {
 
     @RequestMapping("/admin/admins/view")
-    public String viewInstitutions() {
+    public String viewAdmins() {
+
+
         return "user/admins";
     }
 

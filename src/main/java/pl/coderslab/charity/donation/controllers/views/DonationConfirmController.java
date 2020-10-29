@@ -1,4 +1,4 @@
-package pl.coderslab.charity.donation.controllers;
+package pl.coderslab.charity.donation.controllers.views;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;

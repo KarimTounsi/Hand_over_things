@@ -1,4 +1,4 @@
-package pl.coderslab.charity.institution.controllers;
+package pl.coderslab.charity.institution.controllers.restControllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,7 +20,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/admin/api/institutions")
+@RequestMapping("/api/institution")
 @RequiredArgsConstructor
 @Slf4j
 public class InstitutionController {

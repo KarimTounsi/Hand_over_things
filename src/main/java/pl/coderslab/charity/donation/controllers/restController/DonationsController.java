@@ -1,4 +1,4 @@
-package pl.coderslab.charity.donation.controllers;
+package pl.coderslab.charity.donation.controllers.restController;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

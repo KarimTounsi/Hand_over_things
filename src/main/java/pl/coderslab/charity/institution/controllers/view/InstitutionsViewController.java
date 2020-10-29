@@ -1,4 +1,4 @@
-package pl.coderslab.charity.institution.controllers;
+package pl.coderslab.charity.institution.controllers.view;
 
 
 import lombok.AllArgsConstructor;

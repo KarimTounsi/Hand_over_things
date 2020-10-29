@@ -3,6 +3,7 @@ package pl.coderslab.charity.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -26,7 +27,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/resources/**","/WEB-INF/views/**", "/register").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**", "/api/admin/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"api/user").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"api/user/*").hasAnyRole("USER","ADMIN")
+                .antMatchers(HttpMethod.DELETE,"api/user/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT,"api/user/*").hasAnyRole("USER","ADMIN")
+                .antMatchers(HttpMethod.PATCH,"api/user/*").hasRole("ADMIN")
+                .antMatchers("/api/institution/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/login").anonymous()
                 .anyRequest().authenticated()
@@ -38,7 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/")
         .and()
-        .csrf().ignoringAntMatchers("/admin/api/**" , "/user/api/**");
+        .csrf().ignoringAntMatchers("/api/**");
     }
 
 

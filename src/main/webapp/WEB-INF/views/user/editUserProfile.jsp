@@ -79,7 +79,7 @@
 
                         </div>
                         <div class="form-group form-group--buttons">
-                            <button type="submit" class="btn" id="addButton" data-method="POST">Zmień email</button>
+                            <button type="submit" class="btn" id="addButton" data-method="POST">Wprowadź dane</button>
                         </div>
                         </form:form>
 
@@ -99,16 +99,16 @@
                             </label>
                         </div>
 
-                        <div class="form-group form-group--inline">
-                            <label> Powtórz<br>nowe hasło <input type="password" id="passwordCheck" placeholder="Powtórz nowe hasło"/>
-                                <br> <form:errors path="passwordCheck" cssClass="error"/>
-                            </label>
-                        </div>
-                        <div class="form-group form-group--inline">
-                            <div class="form-group form-group--buttons">
-                                <button type="submit" class="btn" id="addButton2" data-method="POST">Zmień hasło</button>
-                            </div>
-                        </div>
+<%--                        <div class="form-group form-group--inline">--%>
+<%--                            <label> Powtórz<br>nowe hasło <input type="password" id="passwordCheck" placeholder="Powtórz nowe hasło"/>--%>
+<%--                                <br> <form:errors path="passwordCheck" cssClass="error"/>--%>
+<%--                            </label>--%>
+<%--                        </div>--%>
+<%--                        <div class="form-group form-group--inline">--%>
+<%--                            <div class="form-group form-group--buttons">--%>
+<%--                                <button type="submit" class="btn" id="addButton2" data-method="POST">Zmień hasło</button>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
             </div>
@@ -127,6 +127,6 @@
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="<c:url value="/resources/js/app.js"/>"></script>
-<script src="<c:url value="/resources/js/app-rest-editUserProfile.js"/>"></script>
+<script src="<c:url value="/resources/js/app-rest-user.js"/>"></script>
 </body>
 </html>
