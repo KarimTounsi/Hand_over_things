@@ -20,9 +20,13 @@ $(function () {
                     let newDivElement5 = $('<div>');
                     let newDivElement6 = $('<div>');
 
+                    let newDivElement7;
+
                     let status = 'Nie zrealizowane';
                     if (element.receiveStatus === false) {
                         status = 'Nie zrealizowane'
+                        newDivElement7 = $('<div>');
+                        newDivElement7.attr('class', 'h3 confirm text-success').text('Potwierdź odbiór').attr('id',element.id).data('method','PUT');
                     } else if (element.receiveStatus === true) {
                         status = 'zrealizowane'
                     }
@@ -50,7 +54,7 @@ $(function () {
                     newDivElement5.attr('class', 'subtitle').text(status);
                     newDivElement6.attr('class', 'subtitle').text(element.pickUp);
                     newDivElement.append(newDivElement1).append(newDivElement2).append(newDivElement3)
-                        .append(newDivElement4).append(newDivElement5).append(newDivElement6);
+                        .append(newDivElement4).append(newDivElement5).append(newDivElement6).append(newDivElement7);
                     newLiElement.append(newDivElement);
                     $('.list').append(newLiElement);
                 });
@@ -77,9 +81,13 @@ $(function () {
                         let newDivElement5 = $('<div>');
                         let newDivElement6 = $('<div>');
 
+                        let newDivElement7;
+
                         let status = 'Nie zrealizowane';
                         if (element.receiveStatus === false) {
                             status = 'Nie zrealizowane'
+                            newDivElement7 = $('<div>');
+                            newDivElement7.attr('class', 'h3 confirm text-success').text('Potwierdź odbiór').attr('id',element.id).data('method','PUT');
                         } else if (element.receiveStatus === true) {
                             status = 'zrealizowane'
                         }
@@ -108,7 +116,7 @@ $(function () {
                         newDivElement5.attr('class', 'subtitle').text(status);
                         newDivElement6.attr('class', 'subtitle').text(element.pickUp);
                         newDivElement.append(newDivElement1).append(newDivElement2).append(newDivElement3)
-                            .append(newDivElement4).append(newDivElement5).append(newDivElement6);
+                            .append(newDivElement4).append(newDivElement5).append(newDivElement6).append(newDivElement7);
                         newLiElement.append(newDivElement);
                         $('.list').append(newLiElement);
                     });
@@ -116,6 +124,26 @@ $(function () {
             });
     }
         GetAllDonationsSorted();
+
+        function putUpdateDonation() {
+            $('.list').on('click', '.confirm', function (element) {
+                element.preventDefault();
+                let newDonation = {
+                    id: $(this).attr('id'),
+                };
+                $.ajax({
+                    url: BASE_URL + URL + $(this).attr('id'),
+                    method: $(this).data('method'),
+                    data: JSON.stringify(newDonation),
+                    contentType: 'application/json'
+                }).done(function () {
+                    GetAllDonations();
+                });
+            });
+        }
+
+        putUpdateDonation();
+
 }
     ajax();
 });

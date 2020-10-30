@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.donation.DTOS.DonationDTO;
 import pl.coderslab.charity.donation.entity.Donation;
 import pl.coderslab.charity.donation.service.DonationService;
 
+import pl.coderslab.charity.institution.entity.Institution;
 import pl.coderslab.charity.user.entity.User;
 import pl.coderslab.charity.user.service.UserService;
 
@@ -86,5 +88,19 @@ public class DonationsController {
             return ResponseEntity.notFound().build();
         }
     }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity updateOne(@RequestBody DonationDTO donationDTO, Principal principal) {
+       if (donationService.getByIdAndUser(donationDTO.getId(),userService.getUserByEmail(principal.getName())) !=null){
+           Optional<Donation> optionalDonation = donationService.getById(donationDTO.getId());
+           if (optionalDonation.isPresent() ) {
+               Donation donation = optionalDonation.get();
+               donationService.updateDonation(donation);
+           }
+       }
+        return ResponseEntity.noContent().build();
+    }
+
 
 }

@@ -28,5 +28,8 @@ public interface DonationService {
 
     List<Donation> getAllByUserOrderByCreatedAsc(User user);
 
+    Donation getByIdAndUser(long id,User user);
 
+
+    void updateDonation(Donation donation);
 }

@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 public class DonationDTO {
 
-
+    private Long id;
 
     private Integer quantity;
 
@@ -44,5 +44,7 @@ public class DonationDTO {
 
 
     private String phoneNumber;
+
+    private boolean receiveStatus;
 
 }

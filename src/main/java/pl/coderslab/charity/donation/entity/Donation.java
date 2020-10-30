@@ -77,4 +77,9 @@ public class Donation {
         created = LocalDateTime.now();
     }
 
+    @PreUpdate
+    public void preUpdate() {
+        pickUp = LocalDateTime.now();
+    }
+
 }

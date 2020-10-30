@@ -24,7 +24,7 @@
 
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
-        <p>Sortowanie:</p>
+        <p class="h1">Sortowanie:</p>
         <span class="h2 sort" data-path="sortByReceiveStatusDesc">|Odebrane| </span>
         <span class="h2 sort" data-path="sortByReceiveStatusAsc">|Nie odebrane| </span> <br>
         <span class="h2 sort" data-path="sortByPickUpAsc">|Po dacie odebrane (jeśli odebrane,od początkowego)| </span> <br>
@@ -41,7 +41,7 @@
                         <div class="subtitle">${institutions[theCount.index-1].description}</div>
                     </div>
                     <div class="col">
-                        <div class="title">${institutions[theCount.index].name}</div>
+                        <div class="title" style="text-decoration-color: ">${institutions[theCount.index].name}</div>
                         <div class="subtitle">${institutions[theCount.index].description}</div>
                     </div>
                 </li>

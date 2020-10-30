@@ -98,5 +98,17 @@ public class DonationServiceImpl implements DonationService {
         return donationRepository.findAllByUserOrderByCreatedAsc(user);
     }
 
+    @Override
+    public Donation getByIdAndUser(long id, User user) {
+        return donationRepository.findByIdAndUser(id,user);
+    }
+
+    @Override
+    public void updateDonation(Donation donation) {
+        donation.setReceiveStatus(true);
+        donationRepository.save(donation);
+        log.info("donation updated: " + donation);
+    }
+
 
 }
