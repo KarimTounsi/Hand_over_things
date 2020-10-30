@@ -10,6 +10,12 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
 
 
     List<Donation> findAllByUser(User user);
+    List<Donation> findAllByUserOrderByCreatedAsc(User user);
+    List<Donation> findAllByUserOrderByCreatedDesc(User user);
+    List<Donation> findAllByUserOrderByReceiveStatusAsc(User user);
+    List<Donation> findAllByUserOrderByReceiveStatusDesc(User user);
+    List<Donation> findAllByUserAndReceiveStatusTrueOrderByPickUpDesc(User user);
+    List<Donation> findAllByUserAndReceiveStatusTrueOrderByPickUpAsc(User user);
 
 
 

@@ -14,11 +14,19 @@ public interface DonationService {
     Integer getSumOfQuantity();
 
     Integer getListSize();
-
     void saveDonation(DonationDTO donationDTO, Principal principal);
 
     List<Donation> getAllByUser(User user);
-
     Optional<Donation> getById(Long id);
-    
+
+    List<Donation> getAllByUserOrderByCreatedDesc(User user);
+    List<Donation> getAllByUserOrderByReceiveStatusAsc(User user);
+    List<Donation> getAllByUserOrderByReceiveStatusDesc(User user);
+
+    List<Donation> getAllByUserOrderByPickUpDesc(User user);
+    List<Donation> getAllByUserOrderByPickUpAsc(User user);
+
+    List<Donation> getAllByUserOrderByCreatedAsc(User user);
+
+
 }

@@ -56,7 +56,7 @@ $(function () {
         let bagsName = "";
         if (quantityOfBags === 1) {
             bagsName = "worek";
-        } else if (quantityOfBags > 1 && quantityOfBags < 5) {
+        } else if (quantityOfBags > 1 && quantityOfBags < 5 || quantityOfBags > 31 && quantityOfBags < 34) {
             bagsName = "worki";
         } else {
             bagsName = "worków";

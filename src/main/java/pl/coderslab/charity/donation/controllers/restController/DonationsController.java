@@ -17,7 +17,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/user/api/donations")
+@RequestMapping("/api/donations")
 @RequiredArgsConstructor
 @Slf4j
 public class DonationsController {
@@ -35,6 +35,46 @@ public class DonationsController {
         return ResponseEntity.ok(donations);
     }
 
+    @GetMapping("/sortByCreatedDesc")
+    public ResponseEntity<List<Donation>> findAllDonationsSortedByCreatedDesc(Principal principal) {
+        User user = userService.getUserByEmail(principal.getName());
+        List<Donation> donations = donationService.getAllByUserOrderByCreatedDesc(user);
+        return ResponseEntity.ok(donations);
+    }
+
+    @GetMapping("/sortByCreatedAsc")
+    public ResponseEntity<List<Donation>> findAllDonationsSortedByCreatedAsc(Principal principal) {
+        User user = userService.getUserByEmail(principal.getName());
+        List<Donation> donations = donationService.getAllByUserOrderByCreatedAsc(user);
+        return ResponseEntity.ok(donations);
+    }
+
+    @GetMapping("/sortByReceiveStatusAsc")
+    public ResponseEntity<List<Donation>> findAllDonationsSortedByStatusAsc(Principal principal) {
+        User user = userService.getUserByEmail(principal.getName());
+        List<Donation> donations = donationService.getAllByUserOrderByReceiveStatusAsc(user);
+        return ResponseEntity.ok(donations);
+    }
+    @GetMapping("/sortByReceiveStatusDesc")
+    public ResponseEntity<List<Donation>> findAllDonationsSortedByStatusDesc(Principal principal) {
+        User user = userService.getUserByEmail(principal.getName());
+        List<Donation> donations = donationService.getAllByUserOrderByReceiveStatusDesc(user);
+        return ResponseEntity.ok(donations);
+    }
+
+    @GetMapping("/sortByPickUpDesc")
+    public ResponseEntity<List<Donation>> findAllDonationsSortedByPickUpDesc(Principal principal) {
+        User user = userService.getUserByEmail(principal.getName());
+        List<Donation> donations = donationService.getAllByUserOrderByPickUpDesc(user);
+        return ResponseEntity.ok(donations);
+    }
+
+    @GetMapping("/sortByPickUpAsc")
+    public ResponseEntity<List<Donation>> findAllDonationsSortedByPickUpAsc(Principal principal) {
+        User user = userService.getUserByEmail(principal.getName());
+        List<Donation> donations = donationService.getAllByUserOrderByPickUpAsc(user);
+        return ResponseEntity.ok(donations);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity getOne(@PathVariable Long id) {

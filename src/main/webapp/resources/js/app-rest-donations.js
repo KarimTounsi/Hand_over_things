@@ -1,6 +1,6 @@
 $(function () {
     let BASE_URL = 'http://localhost:8080';
-    let URL = '/user/api/donations/';
+    let URL = '/api/donations/';
 
     function ajax() {
         function GetAllDonations() {
@@ -16,50 +16,106 @@ $(function () {
                     let newDivElement1 = $('<div>');
                     let newDivElement2 = $('<div>');
                     let newDivElement3 = $('<div>');
+                    let newDivElement4 = $('<div>');
+                    let newDivElement5 = $('<div>');
+                    let newDivElement6 = $('<div>');
 
                     let status = 'Nie zrealizowane';
-                    if(element.receivingStatus === false){
+                    if (element.receiveStatus === false) {
                         status = 'Nie zrealizowane'
-                    } else if (element.receivingStatus === true){
+                    } else if (element.receiveStatus === true) {
                         status = 'zrealizowane'
                     }
+                    let list = element.categories
+                    let result='Dary: ';
+                    for (let i = 0; i < list.length; i++) {
+                        result += list[i].name + '. '
+                    }
+
+                    let bagsName = "";
+                    if (element.quantity === 1) {
+                        bagsName = "worek";
+                    } else if (element.quantity > 1 && element.quantity < 5 || element.quantity > 31 && element.quantity < 34) {
+                        bagsName = "worki";
+                    } else {
+                        bagsName = "worków";
+                    }
+
                     newLiElement.attr('id', element.id);
-                    newDivElement.attr('class','col')
-                    newDivElement1.attr('class','title').text(element.created);
-                    newDivElement2.attr('class','subtitle').text(status);
-                    newDivElement3.attr('class','subtitle').text(element.pickUp);
-                    newDivElement.append(newDivElement1).append(newDivElement2).append(newDivElement3);
+                    newDivElement.attr('class', 'col')
+                    newDivElement1.attr('class', 'title').text('Dla: ' + element.institution.name);
+                    newDivElement2.attr('class', 'subtitle').text(element.created);
+                    newDivElement3.attr('class', 'subtitle').text(result)
+                    newDivElement4.attr('class', 'subtitle').text(element.quantity + ' '+ bagsName);
+                    newDivElement5.attr('class', 'subtitle').text(status);
+                    newDivElement6.attr('class', 'subtitle').text(element.pickUp);
+                    newDivElement.append(newDivElement1).append(newDivElement2).append(newDivElement3)
+                        .append(newDivElement4).append(newDivElement5).append(newDivElement6);
                     newLiElement.append(newDivElement);
                     $('.list').append(newLiElement);
                 });
             });
         }
-
         GetAllDonations();
 
-        function post() {
-            $('#addButton').on('click', function (e) {
+        function GetAllDonationsSorted() {
+            $('.sort').on('click', function (e) {
                 e.preventDefault();
-                let newInstitution = {
-                    email: $('#email').val(),
-                    password: $('#password').val(),
-                };
+                $('.list').empty();
                 $.ajax({
-                    url: BASE_URL + URL,
-                    method: $(this).data('method'),
-                    data: JSON.stringify(newInstitution),
-                    contentType: 'application/json'
-                }).done(function () {
-                    GetAllAdmins();
-                    $('#email').val('');
-                    $('#password').val('');
+                    url: BASE_URL + URL + $(this).data('path'),
+                    method: $('.list').data('method'),
+                    dataType: 'json'
+                }).done(function (result) {
+                    result.forEach(function (element) {
+                        let newLiElement = $('<li>');
+                        let newDivElement = $('<div>');
+                        let newDivElement1 = $('<div>');
+                        let newDivElement2 = $('<div>');
+                        let newDivElement3 = $('<div>');
+                        let newDivElement4 = $('<div>');
+                        let newDivElement5 = $('<div>');
+                        let newDivElement6 = $('<div>');
+
+                        let status = 'Nie zrealizowane';
+                        if (element.receiveStatus === false) {
+                            status = 'Nie zrealizowane'
+                        } else if (element.receiveStatus === true) {
+                            status = 'zrealizowane'
+                        }
+                        let list = element.categories
+                        let result='Dary: ';
+                        for (let i = 0; i < list.length; i++) {
+                            result += list[i].name + '. '
+                        }
 
 
+                        let bagsName = "";
+                        if (element.quantity === 1) {
+                            bagsName = "worek";
+                        } else if (element.quantity > 1 && element.quantity < 5 || element.quantity > 31 && element.quantity < 34) {
+                            bagsName = "worki";
+                        } else {
+                            bagsName = "worków";
+                        }
+
+                        newLiElement.attr('id', element.id);
+                        newDivElement.attr('class', 'col')
+                        newDivElement1.attr('class', 'title').text('Dla: ' + element.institution.name);
+                        newDivElement2.attr('class', 'subtitle').text(element.created);
+                        newDivElement3.attr('class', 'subtitle').text(result)
+                        newDivElement4.attr('class', 'subtitle').text(element.quantity + ' '+ bagsName);
+                        newDivElement5.attr('class', 'subtitle').text(status);
+                        newDivElement6.attr('class', 'subtitle').text(element.pickUp);
+                        newDivElement.append(newDivElement1).append(newDivElement2).append(newDivElement3)
+                            .append(newDivElement4).append(newDivElement5).append(newDivElement6);
+                        newLiElement.append(newDivElement);
+                        $('.list').append(newLiElement);
+                    });
                 });
             });
-        }
-
     }
-
+        GetAllDonationsSorted();
+}
     ajax();
 });

@@ -24,20 +24,27 @@
 
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
+        <p>Sortowanie:</p>
+        <span class="h2 sort" data-path="sortByReceiveStatusDesc">|Odebrane| </span>
+        <span class="h2 sort" data-path="sortByReceiveStatusAsc">|Nie odebrane| </span> <br>
+        <span class="h2 sort" data-path="sortByPickUpAsc">|Po dacie odebrane (jeśli odebrane,od początkowego)| </span> <br>
+        <span class="h2 sort" data-path="sortByPickUpDesc">|Po dacie odebrane (jeśli odebrane,od najnowszego)| </span> <br>
+        <span class="h2 sort" data-path="sortByCreatedAsc">|Po dacie utworzenia wpisu (od początkowego)| </span> <br>
+        <span class="h2 sort" data-path="sortByCreatedDesc">|Po dacie utworzenia wpisu (od najnowszego)| </span>
 
-
+<br>
         <ul class="help--slides-items list" data-method="GET">
-            <c:forEach varStatus="theCount"  begin="1" end="${institutions.size()}" var="index"  step="2" >
-                    <li>
+            <c:forEach varStatus="theCount" begin="1" end="${institutions.size()}" var="index" step="2">
+                <li>
                     <div class="col">
                         <div class="title">${institutions[theCount.index-1].name}</div>
                         <div class="subtitle">${institutions[theCount.index-1].description}</div>
                     </div>
-                <div class="col">
-                    <div class="title">${institutions[theCount.index].name}</div>
-                    <div class="subtitle">${institutions[theCount.index].description}</div>
-                </div>
-                    </li>
+                    <div class="col">
+                        <div class="title">${institutions[theCount.index].name}</div>
+                        <div class="subtitle">${institutions[theCount.index].description}</div>
+                    </div>
+                </li>
             </c:forEach>
         </ul>
     </div>

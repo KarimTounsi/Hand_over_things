@@ -66,8 +66,8 @@ public class Donation {
     private String phoneNumber;
 
 
-    @Column(name = "receiving_status")
-    private boolean receivingStatus;
+    @Column(name = "receive_status")
+    private boolean receiveStatus;
 
     @Column(name = "pick_up")
     private LocalDateTime pickUp;

@@ -68,5 +68,35 @@ public class DonationServiceImpl implements DonationService {
         return donationRepository.findById(id);
     }
 
+    @Override
+    public List<Donation> getAllByUserOrderByCreatedDesc(User user) {
+        return donationRepository.findAllByUserOrderByCreatedDesc(user);
+    }
+
+    @Override
+    public List<Donation> getAllByUserOrderByReceiveStatusAsc(User user) {
+        return donationRepository.findAllByUserOrderByReceiveStatusAsc(user);
+    }
+
+    @Override
+    public List<Donation> getAllByUserOrderByReceiveStatusDesc(User user) {
+        return donationRepository.findAllByUserOrderByReceiveStatusDesc(user);
+    }
+
+    @Override
+    public List<Donation> getAllByUserOrderByPickUpDesc(User user) {
+        return donationRepository.findAllByUserAndReceiveStatusTrueOrderByPickUpDesc(user);
+    }
+
+    @Override
+    public List<Donation> getAllByUserOrderByPickUpAsc(User user) {
+        return donationRepository.findAllByUserAndReceiveStatusTrueOrderByPickUpAsc(user);
+    }
+
+    @Override
+    public List<Donation> getAllByUserOrderByCreatedAsc(User user) {
+        return donationRepository.findAllByUserOrderByCreatedAsc(user);
+    }
+
 
 }
