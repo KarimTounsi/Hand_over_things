@@ -20,7 +20,8 @@ public class EditUserProfileViewController {
 
     @RequestMapping("/user/edit-profile")
     public String viewEditProfile(Model model, Principal principal) {
-
+        User userByEmail = userService.getUserByEmail(principal.getName());
+        model.addAttribute("id",userByEmail.getId());
         return "user/editUserProfile";
     }
 

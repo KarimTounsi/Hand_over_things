@@ -7,6 +7,7 @@ import pl.coderslab.charity.user.entity.User;
 import pl.coderslab.charity.user.repository.UserRepository;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
 import java.util.Optional;
 
 @Service
@@ -17,8 +18,12 @@ public class ValidationEmailService {
 
     private final UserRepository userRepository;
 
+
     public boolean checkUniqueEmail(String email) {
         Optional<User> optionalUser = userRepository.findFirstByEmail(email);
         return !optionalUser.isPresent();
     }
-}
+
+
+    }
+

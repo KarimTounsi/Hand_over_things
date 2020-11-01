@@ -14,6 +14,7 @@ import pl.coderslab.charity.user.service.UserService;
 import pl.coderslab.charity.user.entity.User;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.security.Principal;
 import java.util.List;
 import java.util.Map;
@@ -31,17 +32,20 @@ public class UserController {
 
 
 
-    @GetMapping
-    public ResponseEntity<List<User>> findAllWithStatusTrue() {
+    @GetMapping("/{role}")
+    public ResponseEntity<List<User>> findAllWithStatusTrue(@PathVariable String role) {
 
-        List<User> Users = userService.getAllByActiveAndRoleOrderById(true, "ROLE_USER");
+        List<User> Users = userService.getAllByActiveAndRoleOrderById(true, role);
 
         return ResponseEntity.ok(Users);
     }
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity getOne(@PathVariable Long id, Principal principal) {
+
+
+
+    @GetMapping("/{role}/{id}")
+    public ResponseEntity getOne(@PathVariable Long id,@PathVariable String role, Principal principal) {
         User LoggedUser = userService.getUserByEmail(principal.getName());
         if (LoggedUser.getRole().equals("ROLE_USER") && LoggedUser.getId().equals(id)){
             Optional<User> optionalUser = userService.getUserById(id);
@@ -75,6 +79,28 @@ public class UserController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+
+    @PostMapping
+    public ResponseEntity createOne(@Valid @RequestBody
+                                            AdminDTO adminDTO, BindingResult errors) {
+        if (errors.hasErrors()) {
+            try {
+                return ResponseEntity.badRequest().body(
+                        new ObjectMapper().writeValueAsString
+                                (errors.getAllErrors()
+                                        .stream()
+                                        .collect(Collectors.toMap(
+                                                (ObjectError oE) -> oE.getCode(),
+                                                oE -> oE.getDefaultMessage()))));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        }
+        User saved = userService.saveUserAdmin(adminDTO);
+        return ResponseEntity.created(URI.create("/api/user/" + saved.getId()))
+                .build();
     }
 
 

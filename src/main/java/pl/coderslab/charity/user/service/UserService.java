@@ -21,9 +21,8 @@ public interface UserService {
 
     void save(User user);
 
-    User updateUserAdmin(User user);
 
-   User updateUserAdminPartially(User user);
+
 
    User updateUser(User user) ;
 

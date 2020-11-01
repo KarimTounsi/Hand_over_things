@@ -2,6 +2,7 @@ package pl.coderslab.charity.user.DTOS;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.UniqueElements;
 import pl.coderslab.charity.user.validation.constraints.UniqueEmail;
 
 import javax.validation.constraints.Email;
@@ -27,3 +28,5 @@ public class AdminDTO {
 
 
 }
+
+

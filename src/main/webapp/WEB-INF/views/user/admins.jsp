@@ -68,7 +68,16 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script src="<c:url value="/resources/js/app-rest-admin.js"/>"></script>
+<script src="<c:url value="/resources/js/app-rest-user.js"/>"></script>
+<script>
+    getAllUsers('ROLE_ADMIN');
+    putUpdateUser('ROLE_ADMIN');
+    patchUpdateUser('ROLE_ADMIN');
+    postNewAdmin('ROLE_ADMIN');
+    deleteUser('ROLE_ADMIN');
+</script>
+
+
 </body>
 </html>
 
