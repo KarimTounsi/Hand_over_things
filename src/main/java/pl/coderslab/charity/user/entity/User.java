@@ -30,10 +30,17 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String role;
+
     @Column(name = "active", nullable = false)
     private boolean active;
 
+    @Column(name = "token", nullable = false)
+    private String Token;
 
-    @Column(nullable = false)
-    private String role;
+
+
+
+
 }
