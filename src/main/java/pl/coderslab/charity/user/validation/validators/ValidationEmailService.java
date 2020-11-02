@@ -24,6 +24,9 @@ public class ValidationEmailService {
         return !optionalUser.isPresent();
     }
 
-
+    public boolean EmailCheck (String email) {
+        Optional<User> optionalUser = userRepository.findFirstByEmail(email);
+        return optionalUser.isPresent();
+    }
     }
 

@@ -37,19 +37,19 @@ public class UserServiceImpl implements UserService {
         user.setActive(false);
         user.setRole("ROLE_USER");
 
-        MessageDigest salt = MessageDigest.getInstance("SHA-256");
-        salt.update(UUID.randomUUID().toString().getBytes("UTF-8"));
-        String digest = bytesToHex(salt.digest());
+        String digest = getDigest();
 
         user.setToken(digest);
 
         return userRepository.save(user);
     }
 
+
+
     @Override
     public User activateUser(User user) {
         user.setActive(true);
-       return userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @Override
@@ -119,7 +119,6 @@ public class UserServiceImpl implements UserService {
         log.info("User emailUpdated: " + user);
         return user;
     }
-
 
 
 }

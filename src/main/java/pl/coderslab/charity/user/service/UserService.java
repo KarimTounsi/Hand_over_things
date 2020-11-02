@@ -5,9 +5,11 @@ import pl.coderslab.charity.user.DTOS.UserDTO;
 import pl.coderslab.charity.user.entity.User;
 
 import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface UserService {
 
@@ -17,6 +19,13 @@ public interface UserService {
         for (final byte b : in)
             builder.append(String.format("%02x", b));
         return builder.toString();
+    }
+
+    default String getDigest() throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        MessageDigest salt = MessageDigest.getInstance("SHA-256");
+        salt.update(UUID.randomUUID().toString().getBytes("UTF-8"));
+        String digest = bytesToHex(salt.digest());
+        return digest;
     }
 
     User saveUser(UserDTO userDTO) throws NoSuchAlgorithmException, UnsupportedEncodingException;

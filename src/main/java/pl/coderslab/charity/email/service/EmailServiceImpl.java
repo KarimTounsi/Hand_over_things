@@ -11,11 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import pl.coderslab.charity.user.entity.User;
+import pl.coderslab.charity.user.service.UserService;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +25,9 @@ import java.util.Map;
 @Transactional
 @AllArgsConstructor
 public class EmailServiceImpl implements EmailService {
+
+
+    final private UserService userService;
 
     @Autowired(required = false)
     private JavaMailSender mailSender;
@@ -52,5 +57,38 @@ public class EmailServiceImpl implements EmailService {
         messageHelper.setBcc(new String[]{user.getEmail()});
         messageHelper.setText(mailBody, true);
         mailSender.send(mimeMessage);
+    }
+
+    @Override
+    public void sendResetPasswordEmail(String email) throws IOException, TemplateException, MessagingException, NoSuchAlgorithmException {
+
+        FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
+        freeMarkerConfigurer.setTemplateLoaderPath("classpath:templates/mail/templates");
+        Configuration config = freeMarkerConfigurer.createConfiguration();
+
+        Template mailTemplate = config.getTemplate("reset-password-email.ftlh");
+
+        User user = userService.getUserByEmail(email);
+        user.setToken(userService.getDigest());
+
+
+        Map<String, Object> model = new HashMap<>();
+        model.put("id", user.getId());
+        model.put("email", user.getEmail());
+        model.put("token", user.getToken());
+
+
+        String mailBody = FreeMarkerTemplateUtils.processTemplateIntoString(mailTemplate, model);
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+
+        MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+        messageHelper.setFrom("karim.tounsi100@gmail.com");
+
+        messageHelper.setSubject("Zmiana hasła do konta");
+        messageHelper.setBcc(new String[]{user.getEmail()});
+        messageHelper.setText(mailBody, true);
+        mailSender.send(mimeMessage);
+
+
     }
 }

@@ -41,13 +41,10 @@ public class UserController {
     }
 
 
-
-
-
     @GetMapping("/{role}/{id}")
-    public ResponseEntity getOne(@PathVariable Long id,@PathVariable String role, Principal principal) {
+    public ResponseEntity getOne(@PathVariable Long id, @PathVariable String role, Principal principal) {
         User LoggedUser = userService.getUserByEmail(principal.getName());
-        if (LoggedUser.getRole().equals("ROLE_USER") && LoggedUser.getId().equals(id)){
+        if (LoggedUser.getRole().equals("ROLE_USER") && LoggedUser.getId().equals(id)) {
             Optional<User> optionalUser = userService.getUserById(id);
             if (optionalUser.isPresent()) {
                 User user = optionalUser.get();
@@ -55,7 +52,7 @@ public class UserController {
             } else {
                 return ResponseEntity.notFound().build();
             }
-        }  else if (LoggedUser.getRole().equals("ROLE_ADMIN")){
+        } else if (LoggedUser.getRole().equals("ROLE_ADMIN")) {
             Optional<User> optionalUser = userService.getUserById(id);
             if (optionalUser.isPresent()) {
                 User user = optionalUser.get();
@@ -150,17 +147,18 @@ public class UserController {
         Optional<User> optionalUser = userService.getUserById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-       if (updateMap.get("email") !="" ||  updateMap.get("password") !="") {
-           if (updateMap.containsKey("email") && updateMap.get("email") !=""){
-               user.setEmail(updateMap.get("email"));
-           }
-           if (updateMap.containsKey("password") && updateMap.get("password") !=""){
-               user.setPassword(passwordEncoder.encode(updateMap.get("password")));
-           }
-       }
+            if (updateMap.get("email") != "" || updateMap.get("password") != "") {
+                if (updateMap.containsKey("email") && updateMap.get("email") != "") {
+                    user.setEmail(updateMap.get("email"));
+                }
+                if (updateMap.containsKey("password") && updateMap.get("password") != "") {
+                    user.setPassword(passwordEncoder.encode(updateMap.get("password")));
+                }
+            }
             userService.updateUserPartially(user);
         }
         return ResponseEntity.noContent().build();
     }
+
 
 }
