@@ -21,16 +21,16 @@
 </header>
 
 <section class="login-page">
-    <h2>Załóż konto</h2>
-    <form:form>
+    <h2>Wpisz nowe hasło</h2>
+    <form:form action="/resetPassword/{id}/{token}" method="post" modelAttribute="PasswordDTO">
         <div class="form-group">
-            <input type="password" name="password" placeholder="Hasło" id="password"/>
+            <input type="password" name="password" placeholder="Hasło"/>
             <br> <form:errors path="password" cssClass="error"/>
         </div>
-        <input type="text"  id="id" hidden  value="${id}"/>
-        <input type="text" id="token" hidden value="${token}"/>
+        <input name="id" type="text"  id="id" hidden  value="${id}"/>
+        <input name="token" type="text" id="token" hidden value="${token}"/>
         <div class="form-group">
-            <input type="password" name="passwordCheck" placeholder="Powtórz hasło" id="passwordCheck"/>
+            <input type="password" name="passwordCheck" placeholder="Powtórz hasło"/>
             <br> <form:errors path="passwordCheck" cssClass="error"/>
         </div>
 
@@ -55,9 +55,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 
-<script src="<c:url value="/resources/js/app-rest-resetPassword.js"/>"></script>
-<script>
-    putResetPassword();
-</script>
+
 </body>
 </html>

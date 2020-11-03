@@ -22,7 +22,7 @@
 
 <section class="login-page">
     <h2>Wpisz swój email</h2>
-    <form:form>
+    <form:form action="/reset" method="post" modelAttribute="emailDTO">
         <div class="form-group">
             <input type="email" name="email" placeholder="Email" id="email"/>
            <br> <form:errors path="email" cssClass="error"/>
@@ -45,9 +45,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 
-<script src="<c:url value="/resources/js/app-rest-resetPassword.js"/>"></script>
-<script>
-    putResetPasswordEmailInput();
-</script>
+
 </body>
 </html>
