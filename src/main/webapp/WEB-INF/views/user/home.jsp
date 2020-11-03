@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -21,8 +22,8 @@
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h1>
-                Zacznij pomagać!<br/>
-                Oddaj niechciane rzeczy w zaufane ręce
+                <spring:message code="home.SH"/><br/>
+                <spring:message code="home.PYUIITH"/>
             </h1>
         </div>
     </div>
@@ -33,14 +34,14 @@
         <div class="stats--item">
             <em>${sumOfQuantity}</em>
 
-            <h3>Oddanych worków</h3>
+            <h3><spring:message code="home.DB"/></h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
                 tempora!</p>
         </div>
 
         <div class="stats--item">
             <em>${numberOfDonations}</em>
-            <h3>Przekazanych darów</h3>
+            <h3><spring:message code="home.DG"/></h3>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
                 quam.</p>
         </div>
@@ -49,37 +50,37 @@
 </section>
 
 <section class="steps">
-    <h2>Wystarczą 4 proste kroki</h2>
+    <h2><spring:message code="home.4SSAE"/></h2>
 
     <div class="steps--container">
         <div class="steps--item">
             <span class="icon icon--hands"></span>
-            <h3>Wybierz rzeczy</h3>
-            <p>ubrania, zabawki, sprzęt i inne</p>
+            <h3><spring:message code="home.CT"/></h3>
+            <p><spring:message code="home.CTEAM"/></p>
         </div>
         <div class="steps--item">
             <span class="icon icon--arrow"></span>
-            <h3>Spakuj je</h3>
-            <p>skorzystaj z worków na śmieci</p>
+            <h3><spring:message code="home.PT"/></h3>
+            <p><spring:message code="home.UGB"/></p>
         </div>
         <div class="steps--item">
             <span class="icon icon--glasses"></span>
-            <h3>Zdecyduj komu chcesz pomóc</h3>
-            <p>wybierz zaufane miejsce</p>
+            <h3><spring:message code="home.DWYWTH"/></h3>
+            <p><spring:message code="home.CATP"/></p>
         </div>
         <div class="steps--item">
             <span class="icon icon--courier"></span>
-            <h3>Zamów kuriera</h3>
-            <p>kurier przyjedzie w dogodnym terminie</p>
+            <h3><spring:message code="home.OAC"/></h3>
+            <p><spring:message code="home.TCWAAACT"/></p>
         </div>
     </div>
 
-    <a href="#" class="btn btn--large">Załóż konto</a>
+    <a href="#" class="btn btn--large"><spring:message code="home.CAA"/></a>
 </section>
 
 <section class="about-us">
     <div class="about-us--text">
-        <h2>O nas</h2>
+        <h2><spring:message code="home.AU"/></h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
             optio esse quisquam illo omnis.</p>
         <img src="<c:url value="/resources/images/signature.svg"/>" class="about-us--text-signature" alt="Signature"/>
@@ -89,11 +90,10 @@
 </section>
 
 <section class="help">
-    <h2>Komu pomagamy?</h2>
+    <h2><spring:message code="home.WAWH"/></h2>
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
-        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
-            Możesz sprawdzić czym się zajmują.</p>
+        <p><spring:message code="home.IOTD"/></p>
         <ul class="help--slides-items">
             <c:forEach varStatus="theCount"  begin="1" end="${institutions.size()}" var="index"  step="2" >
                     <li>
