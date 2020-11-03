@@ -31,13 +31,17 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
 
 
-
     @GetMapping("/{role}")
-    public ResponseEntity<List<User>> findAllWithStatusTrue(@PathVariable String role) {
+    public ResponseEntity<List<User>> findAllWithStatusTrue(@PathVariable String role, Principal principal) {
+        List<User> users;
+        if (role.equals("ROLE_ADMIN")) {
+            users = userService.getAllByActiveAndRoleOrderById(true, role);
+            users.remove(userService.getUserByEmail(principal.getName()));
+        } else {
+            users = userService.getAllByActiveAndRoleOrderById(true, role);
+        }
 
-        List<User> Users = userService.getAllByActiveAndRoleOrderById(true, role);
-
-        return ResponseEntity.ok(Users);
+        return ResponseEntity.ok(users);
     }
 
 
