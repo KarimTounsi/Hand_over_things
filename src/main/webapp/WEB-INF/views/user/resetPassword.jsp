@@ -22,16 +22,16 @@
 
 <section class="login-page">
     <h2>Wpisz nowe hasło</h2>
-    <form:form action="/resetPassword/{id}/{token}" method="post" modelAttribute="PasswordDTO">
+    <form:form method="post" modelAttribute="PasswordDTO">
         <div class="form-group">
-            <input type="password" name="password" placeholder="Hasło"/>
+            <form:password path="password"/>
             <br> <form:errors path="password" cssClass="error"/>
         </div>
-        <input name="id" type="text"  id="id" hidden  value="${id}"/>
-        <input name="token" type="text" id="token" hidden value="${token}"/>
+        <form:hidden path="id"/>
+        <form:hidden path="token"/>
         <div class="form-group">
-            <input type="password" name="passwordCheck" placeholder="Powtórz hasło"/>
-            <br> <form:errors path="passwordCheck" cssClass="error"/>
+            <form:password path="passwordCheck"/>
+            <br> <form:errors path="*" cssClass="error"/>
         </div>
 
         <div class="form-group form-group--buttons">

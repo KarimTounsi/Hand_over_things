@@ -35,7 +35,7 @@ public class ResetPasswordViewController {
     }
 
     @PostMapping("/resetPassword/{id}/{token}")
-    public String ResetPassword(@Valid PasswordDTO passwordDTO,BindingResult bindingResult) {
+    public String ResetPassword(@Valid PasswordDTO passwordDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "user/resetPassword";
         }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.user.DTOS.AdminDTO;
 import pl.coderslab.charity.user.service.UserService;
@@ -84,7 +85,7 @@ public class UserController {
 
 
     @PostMapping
-    public ResponseEntity createOne(@Valid @RequestBody
+    public ResponseEntity createOne(@Validated(CreateUserGroup.class) @RequestBody
                                             AdminDTO adminDTO, BindingResult errors) {
         if (errors.hasErrors()) {
             try {
@@ -106,7 +107,7 @@ public class UserController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity updateOne(@Valid @RequestBody AdminDTO userDTO, BindingResult errors, Principal principal) {
+    public ResponseEntity updateOne(@Validated(EditUserGroup.class) @RequestBody AdminDTO userDTO, BindingResult errors, Principal principal) {
         if (errors.hasErrors()) {
             try {
                 return ResponseEntity.badRequest().body(
@@ -120,12 +121,12 @@ public class UserController {
                 e.printStackTrace();
             }
         }
-        User LoggedUser = userService.getUserByEmail(principal.getName());
-        if (LoggedUser.getRole().equals("ROLE_USER") && LoggedUser.getId().equals(userDTO.getId())) {
-            Optional<User> optionalUser = userService.getUserById(userDTO.getId());
-            if (optionalUser.isPresent()) {
-                User userDb = optionalUser.get();
-                userDb.setEmail(userDTO.getEmail());
+            User LoggedUser = userService.getUserByEmail(principal.getName());
+            if (LoggedUser.getRole().equals("ROLE_USER") && LoggedUser.getId().equals(userDTO.getId())) {
+                Optional<User> optionalUser = userService.getUserById(userDTO.getId());
+                if (optionalUser.isPresent()) {
+                    User userDb = optionalUser.get();
+                    userDb.setEmail(userDTO.getEmail());
                 userDb.setPassword(userDTO.getPassword());
                 userService.updateUser(userDb);
             } else {
