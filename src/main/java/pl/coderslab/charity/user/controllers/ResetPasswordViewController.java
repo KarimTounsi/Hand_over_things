@@ -1,4 +1,4 @@
-package pl.coderslab.charity.user.controllers.views;
+package pl.coderslab.charity.user.controllers;
 
 
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ public class ResetPasswordViewController {
     UserService userService;
 
     @GetMapping("/resetPassword/{id}/{token}")
-    public String viewResetPassword(@PathVariable Long id, @PathVariable String token, Model model, Principal principal) {
+    public String viewResetPassword(@PathVariable Long id, @PathVariable String token, Model model) {
         model.addAttribute("id", id);
         model.addAttribute("token", token);
         model.addAttribute("PasswordDTO", new PasswordDTO());
@@ -35,7 +35,7 @@ public class ResetPasswordViewController {
     }
 
     @PostMapping("/resetPassword/{id}/{token}")
-    public String ResetPassword(@Valid PasswordDTO passwordDTO,BindingResult bindingResult, Model model, Principal principal ) {
+    public String ResetPassword(@Valid PasswordDTO passwordDTO,BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "user/resetPassword";
         }

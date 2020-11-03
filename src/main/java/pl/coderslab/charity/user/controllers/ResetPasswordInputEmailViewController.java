@@ -1,4 +1,4 @@
-package pl.coderslab.charity.user.controllers.views;
+package pl.coderslab.charity.user.controllers;
 
 
 import freemarker.template.TemplateException;
@@ -40,7 +40,7 @@ public class ResetPasswordInputEmailViewController {
     }
 
     @PostMapping("/reset")
-    public String CheckPasswordInputEmail(@Valid EmailDTO emailDTO , Model model, Principal principal, BindingResult bindingResult) throws MessagingException, TemplateException, NoSuchAlgorithmException, IOException {
+    public String CheckPasswordInputEmail(@Valid EmailDTO emailDTO ,BindingResult bindingResult) throws MessagingException, TemplateException, NoSuchAlgorithmException, IOException {
         if (bindingResult.hasErrors()){
             return "user/resetPasswordInputEmail";
         }
