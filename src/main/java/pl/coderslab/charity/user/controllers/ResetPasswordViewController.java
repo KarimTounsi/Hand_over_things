@@ -29,13 +29,13 @@ public class ResetPasswordViewController {
     public String viewResetPassword(@PathVariable Long id, @PathVariable String token, Model model) {
         model.addAttribute("id", id);
         model.addAttribute("token", token);
-        model.addAttribute("PasswordDTO", new PasswordDTO());
+        model.addAttribute("passwordDTO", new PasswordDTO());
 
         return "user/resetPassword";
     }
 
-    @PostMapping("/resetPassword/{id}/{token}")
-    public String ResetPassword(@Valid PasswordDTO passwordDTO,BindingResult bindingResult) {
+    @PostMapping("/resetPassword")
+    public String ResetPassword(@Valid PasswordDTO passwordDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "user/resetPassword";
         }

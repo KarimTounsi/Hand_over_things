@@ -10,19 +10,19 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
+    <title><spring:message code="admins.AL"/></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
 
 
-<jsp:include page="../fragments/AdminPageheader.jsp"/>
+<jsp:include page="../fragments/adminPageHeader.jsp"/>
 
     <form class="needs-validation mt-3" novalidate>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-                <label for="email">Email</label>
+                <label for="email"><spring:message code="admins.email"/></label>
                 <input type="text" class="form-control" id="email">
                 <br> <form:errors path="email" cssClass="error"/>
                 <div class="valid-tooltip">
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="password">hasło</label>
+                <label for="password"><spring:message code="admins.password"/></label>
                 <input type="password" class="form-control" id="password">
                 <br> <form:errors path="password" cssClass="error"/>
                 <div class="valid-tooltip">
@@ -38,17 +38,17 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" id="addButton" data-method="POST" type="submit">Dodaj admina</button>
+        <button class="btn btn-primary" id="addButton" data-method="POST" type="submit"><spring:message code="admins.AA"/></button>
     </form>
 
     <table class="table mt-3" >
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Email</th>
-            <th scope="col">Edycja pól</th>
-            <th scope="col">Edycja całości</th>
-            <th scope="col">Usuwanie</th>
+            <th scope="col"><spring:message code="admins.email"/></th>
+            <th scope="col"><spring:message code="admins.EF"/></th>
+            <th scope="col"><spring:message code="admins.EE"/></th>
+            <th scope="col"><spring:message code="admins.removal"/></th>
         </tr>
         </thead>
         <tbody class="tableInput" data-method="GET">

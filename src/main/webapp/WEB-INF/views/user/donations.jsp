@@ -8,7 +8,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
+    <title><spring:message code="donations.donations"/></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
@@ -20,18 +20,16 @@
 </header>
 
 <section class="help">
-    <h2>Lista darów</h2>
-
+    <h2><spring:message code="donations.LOG"/></h2>
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
-        <p class="h1">Sortowanie:</p>
-        <span class="h2 sort" data-path="sortByReceiveStatusDesc">|Odebrane| </span>
-        <span class="h2 sort" data-path="sortByReceiveStatusAsc">|Nie odebrane| </span> <br>
-        <span class="h2 sort" data-path="sortByPickUpAsc">|Po dacie odebrane (jeśli odebrane,od początkowego)| </span> <br>
-        <span class="h2 sort" data-path="sortByPickUpDesc">|Po dacie odebrane (jeśli odebrane,od najnowszego)| </span> <br>
-        <span class="h2 sort" data-path="sortByCreatedAsc">|Po dacie utworzenia wpisu (od początkowego)| </span> <br>
-        <span class="h2 sort" data-path="sortByCreatedDesc">|Po dacie utworzenia wpisu (od najnowszego)| </span>
-
+        <p class="h1"><spring:message code="donations.sorting"/></p>
+        <span class="h2 sort" data-path="sortByReceiveStatusDesc">|<spring:message code="donations.received"/>|</span>
+        <span class="h2 sort" data-path="sortByReceiveStatusAsc">|<spring:message code="donations.NR"/>|</span> <br>
+        <span class="h2 sort" data-path="sortByPickUpAsc">|<spring:message code="donations.RADID"/>|</span> <br>
+        <span class="h2 sort" data-path="sortByPickUpDesc">|<spring:message code="donations.RADN"/>| </span> <br>
+        <span class="h2 sort" data-path="sortByCreatedAsc">|<spring:message code="donations.ATECDIO"/>|</span> <br>
+        <span class="h2 sort" data-path="sortByCreatedDesc">|<spring:message code="donations.ATECDNF"/>|</span>
 <br>
         <ul class="help--slides-items list" data-method="GET">
             <c:forEach varStatus="theCount" begin="1" end="${institutions.size()}" var="index" step="2">
@@ -41,16 +39,14 @@
                         <div class="subtitle">${institutions[theCount.index-1].description}</div>
                     </div>
                     <div class="col">
-                        <div class="title" style="text-decoration-color: ">${institutions[theCount.index].name}</div>
+                        <div class="title">${institutions[theCount.index].name}</div>
                         <div class="subtitle">${institutions[theCount.index].description}</div>
                     </div>
                 </li>
             </c:forEach>
         </ul>
     </div>
-
 </section>
-
 <jsp:include page="../fragments/footer.jsp"/>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

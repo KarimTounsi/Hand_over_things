@@ -14,11 +14,10 @@ import javax.validation.constraints.Pattern;
 
 @Data
 @ResetPasswordCheck
-@Scope(value = WebApplicationContext.SCOPE_SESSION,
-        proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class PasswordDTO {
 
     private Long id;
+
     @Length(min = 8, message = "*Twoje hasło musi mieć co najmniej 8 znaków")
     @NotEmpty(message = "*Proszę podać swoje hasło")
     @NotBlank(message = "*Rubryka nie może być pusta")

@@ -9,7 +9,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
+    <title><spring:message code="editUserProfile.editUserProfile"/></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
@@ -17,50 +17,11 @@
 <body>
 <header class="header--main-page" STYLE="height: 140px">
     <jsp:include page="../fragments/header.jsp"/>
-<%--    <main role="main">--%>
-<%--        <div class="jumbotron mt-5">--%>
-<%--            <div class="container text-center">--%>
-<%--                <form class="needs-validation mt-3" novalidate>--%>
-<%--                    <div class="form-row">--%>
-<%--                        <div class="col-md-12 mb-3">--%>
-
-<%--                            <label for="email" data-id="${id}" data-method="GET" class="id" >Email</label>--%>
-<%--                            <input type="text" class="form-control"  id="email">--%>
-<%--                            <br> <form:errors path="email" cssClass="error"/>--%>
-<%--                            <div class="valid-tooltip">--%>
-<%--                                Looks good!--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="col-md-12 mb-3">--%>
-<%--                            <label for="password">Nowe hasło</label>--%>
-<%--                            <input type="password" class="form-control" id="password" placeholder="Nowe hasło">--%>
-<%--                            <br> <form:errors path="password" cssClass="error"/>--%>
-<%--                            <div class="valid-tooltip">--%>
-<%--                                Looks good!--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="col-md-12 mb-3">--%>
-<%--                            <label for="passwordCheck">Powtórz nowe hasło</label>--%>
-<%--                            <input type="password" class="form-control" id="passwordCheck" placeholder="Powtórz nowe hasło">--%>
-<%--                            <br> <form:errors path="passwordCheck" cssClass="error"/>--%>
-<%--                            <div class="valid-tooltip">--%>
-<%--                                Looks good!--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                    <button class="btn btn-primary" id="addButton" data-method="POST" type="submit">Zmień email</button>--%>
-<%--                    <button class="btn btn-primary" id="addButton2" data-method="POST" type="submit">Zmień hasło</button>--%>
-<%--                </form>--%>
-
-<%--            </div>--%>
-<%--        </div>--%>
-
-<%--    </main>--%>
 </header>
 <section class="form--steps">
     <div class="form--steps-instructions">
         <div class="form--steps-container">
-            <h3>Edycja danych profilu</h3>
+            <h3><spring:message code="editUserProfile.EPD"/></h3>
             <p data-step="1" class="active">
         </div>
     </div>
@@ -68,18 +29,18 @@
         <div class="form--steps-counter"><span></span></div>
         <form:form>
             <div data-step="1">
-                <h3>Wpisz nowe dane</h3>
+                <h3><spring:message code="editUserProfile.END"/></h3>
                 <div class="form-section form-section--columns">
                     <div class="form-section--column">
                         <div class="form-group form-group--inline">
-                            <label data-id="${id}" data-method="GET" class="id">Email
+                            <label data-id="${id}" data-method="GET" class="id"><spring:message code="editUserProfile.email"/>
                                 <input type="text"  id="email"/>
                                 <br>
                             </label>
 
                         </div>
                         <div class="form-group form-group--buttons">
-                            <button type="submit" class="btn" id="addButton" data-method="POST">Wprowadź dane</button>
+                            <button type="submit" class="btn" id="addButton" data-method="POST"><spring:message code="editUserProfile.ED"/></button>
                         </div>
 
                         </form:form>
@@ -95,21 +56,10 @@
                     </div>
                     <div class="form-section--column">
                         <div class="form-group form-group--inline">
-                            <label> Nowe hasło <input type="password" id="password" placeholder="Nowe hasło" />
+                            <label><spring:message code="editUserProfile.NP"/><input type="password" id="password" placeholder="<spring:message code="editUserProfile.NP"/>" />
                                 <br> <form:errors path="password" cssClass="error"/>
                             </label>
                         </div>
-
-<%--                        <div class="form-group form-group--inline">--%>
-<%--                            <label> Powtórz<br>nowe hasło <input type="password" id="passwordCheck" placeholder="Powtórz nowe hasło"/>--%>
-<%--                                <br> <form:errors path="passwordCheck" cssClass="error"/>--%>
-<%--                            </label>--%>
-<%--                        </div>--%>
-<%--                        <div class="form-group form-group--inline">--%>
-<%--                            <div class="form-group form-group--buttons">--%>
-<%--                                <button type="submit" class="btn" id="addButton2" data-method="POST">Zmień hasło</button>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
                     </div>
                 </div>
             </div>

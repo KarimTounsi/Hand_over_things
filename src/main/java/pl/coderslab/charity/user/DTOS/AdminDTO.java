@@ -2,8 +2,7 @@ package pl.coderslab.charity.user.DTOS;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.UniqueElements;
-import pl.coderslab.charity.user.validation.constraints.UniqueEmail;
+import pl.coderslab.charity.user.validation.constraints.UniqueEmailWithoutCurrent;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -17,7 +16,7 @@ public class AdminDTO {
     @Email(message = "*Podaj prawidłowy adres e-mail")
     @NotEmpty(message = "*Proszę podać e-mail")
     @NotBlank(message = "*Rubryka nie może być pusta")
-    @UniqueEmail
+    @UniqueEmailWithoutCurrent
     private String email;
 
     @Length(min = 8, message = "*Twoje hasło musi mieć co najmniej 8 znaków")

@@ -10,45 +10,45 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
+    <title><spring:message code="institutions.Institutions"/></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
 
 
-<jsp:include page="../fragments/AdminPageheader.jsp"/>
+<jsp:include page="../fragments/adminPageHeader.jsp"/>
 
 
 <form class="needs-validation mt-3" novalidate>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-                <label for="name">Nazwa instytucji</label>
+                <label for="name"><spring:message code="institutions.NOTI"/></label>
                 <input type="text" class="form-control" id="name">
                 <div class="valid-tooltip">
                     Looks good!
                 </div>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="description">Opis</label>
+                <label for="description"><spring:message code="institutions.description"/></label>
                 <input type="text" class="form-control" id="description">
                 <div class="valid-tooltip">
                     Looks good!
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" id="addButton" data-method="POST" type="submit">Dodaj fundacje</button>
+        <button class="btn btn-primary" id="addButton" data-method="POST" type="submit"><spring:message code="institutions.AF"/></button>
     </form>
 
     <table class="table mt-3" >
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Nazwa instytucji</th>
-            <th scope="col">Opis</th>
-            <th scope="col">Edycja pól</th>
-            <th scope="col">Edycja całości</th>
-            <th scope="col">Usuwanie</th>
+            <th scope="col"><spring:message code="institutions.NOTI"/></th>
+            <th scope="col"><spring:message code="institutions.description"/></th>
+            <th scope="col"><spring:message code="institutions.EF"/></th>
+            <th scope="col"><spring:message code="institutions.EE"/></th>
+            <th scope="col"><spring:message code="institutions.removal"/>Usuwanie</th>
         </tr>
         </thead>
         <tbody class="tableInput" data-method="GET">

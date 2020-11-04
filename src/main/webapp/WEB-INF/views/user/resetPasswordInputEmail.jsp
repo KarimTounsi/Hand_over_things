@@ -10,7 +10,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
+    <title><spring:message code="resetPasswordInputEmail.resetPasswordInputEmail"/></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
@@ -21,13 +21,13 @@
 </header>
 
 <section class="login-page">
-    <h2>Wpisz swój email</h2>
+    <h2><spring:message code="resetPasswordInputEmail.EYE"/></h2>
     <form:form action="/reset" method="post" modelAttribute="emailDTO">
         <div class="form-group">
-            <input type="email" name="email" placeholder="Email" id="email"/>
+            <input type="email" name="email" placeholder="<spring:message code="resetPasswordInputEmail.email"/>" id="email"/>
            <br> <form:errors path="email" cssClass="error"/>
             <div class="form-group form-group--buttons">
-                <button class="btn" type="submit" id="addEmailButton">Wprowadź</button>
+                <button class="btn" type="submit" id="addEmailButton"><spring:message code="resetPasswordInputEmail.enter"/></button>
             </div>
     </form:form>
 </section>

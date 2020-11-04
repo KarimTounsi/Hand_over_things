@@ -10,7 +10,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title><spring:message code="login.login"/></title>
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
@@ -19,28 +19,28 @@
 </header>
 
 <section class="login-page">
-    <h2>Zaloguj się</h2>
+    <h2><spring:message code="login.SI"/></h2>
 
     <form method="post" action="/login">
         <div class="form-group">
-            <input type="email" name="username"  placeholder="Email" />
+            <input type="email" name="username"  placeholder="<spring:message code="login.email"/>" />
         </div>
         <div class="form-group">
-            <input type="password" name="password" placeholder="Hasło" />
+            <input type="password" name="password" placeholder="<spring:message code="login.password"/>" />
             <c:if test="${param['error'] != null}">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Błędne dane logowania!
+                    <spring:message code="login.ILD"/> Błędne dane logowania!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
             </c:if>
-            <a href="/reset" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
+            <a href="/reset" class="btn btn--small btn--without-border reset-password"><spring:message code="login.RP"/></a>
         </div>
 
         <div class="form-group form-group--buttons">
-            <a href="/register" class="btn btn--without-border">Załóż konto</a>
-            <button class="btn" type="submit">Zaloguj się</button>
+            <a href="/register" class="btn btn--without-border"><spring:message code="login.CAA"/></a>
+            <button class="btn" type="submit"><spring:message code="login.SI"/></button>
         </div>
         <sec:csrfInput/>
     </form>

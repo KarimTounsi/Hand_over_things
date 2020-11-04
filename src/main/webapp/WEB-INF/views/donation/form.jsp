@@ -10,7 +10,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
+    <title><spring:message code="form.F"/></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
@@ -23,24 +23,24 @@
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h1>
-                Oddaj rzeczy, których już nie chcesz<br/>
-                <span class="uppercase">potrzebującym</span>
+                <spring:message code="form.GBWA"/><br/>
+                <span class="uppercase"> <spring:message code="form.n"/></span>
             </h1>
 
             <div class="slogan--steps">
-                <div class="slogan--steps-title">Wystarczą 4 proste kroki:</div>
+                <div class="slogan--steps-title"> <spring:message code="form.4SSAE"/></div>
                 <ul class="slogan--steps-boxes">
                     <li>
-                        <div><em>1</em><span>Wybierz rzeczy</span></div>
+                        <div><em>1</em><span> <spring:message code="form.CT"/></span></div>
                     </li>
                     <li>
-                        <div><em>2</em><span>Spakuj je w worki</span></div>
+                        <div><em>2</em><span> <spring:message code="form.PTIB"/></span></div>
                     </li>
                     <li>
-                        <div><em>3</em><span>Wybierz fundację</span></div>
+                        <div><em>3</em><span> <spring:message code="form.CAF"/></span></div>
                     </li>
                     <li>
-                        <div><em>4</em><span>Zamów kuriera</span></div>
+                        <div><em>4</em><span> <spring:message code="form.OAC"/></span></div>
                     </li>
                 </ul>
             </div>
@@ -51,30 +51,26 @@
 <section class="form--steps">
     <div class="form--steps-instructions">
         <div class="form--steps-container">
-            <h3>Ważne!</h3>
+            <h3> <spring:message code="form.I"/></h3>
             <p data-step="1" class="active">
-                Uzupełnij szczegóły dotyczące Twoich rzeczy. Dzięki temu będziemy
-                wiedzieć komu najlepiej je przekazać.
+                <spring:message code="form.CTDPTO"/>
             </p>
             <p data-step="2">
-                Uzupełnij szczegóły dotyczące Twoich rzeczy. Dzięki temu będziemy
-                wiedzieć komu najlepiej je przekazać.
+                <spring:message code="form.CTDPTO"/>
             </p>
             <p data-step="3">
-                Wybierz jedną, do
-                której trafi Twoja przesyłka.
+                <spring:message code="form.COGT"/>
             </p>
-            <p data-step="4">Podaj adres oraz termin odbioru rzeczy.</p>
+            <p data-step="4"><spring:message code="form.PTAROI"/></p>
         </div>
     </div>
 
     <div class="form--steps-container">
-        <div class="form--steps-counter">Krok <span>1</span>/4</div>
-
+        <div class="form--steps-counter"><spring:message code="form.S"/><span>1</span>/4</div>
         <form:form action="/user/donation/form" method="post" modelAttribute="donationDto">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
-                <h3>Zaznacz co chcesz oddać:</h3>
+                <h3> <spring:message code="form.SWGA"/></h3>
                 <c:forEach varStatus="theCount" items="${categories}" var="category" step="1">
                     <div class="form-group form-group--checkbox">
                         <label>
@@ -85,31 +81,31 @@
                     </div>
                 </c:forEach>
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" class="btn next-step"> <spring:message code="form.further"/></button>
                 </div>
             </div>
 
             <!-- STEP 2 -->
             <div data-step="2">
-                <h3>Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</h3>
+                <h3> <spring:message code="form.ETNPYT"/></h3>
 
                 <div class="form-group form-group--inline">
                     <label>
-                        Liczba 60l worków:
+                        <spring:message code="form.NOLB"/>
                         <input type="number" class="bags" name="quantity" step="1" min="1"/>
                     </label>
                 </div>
 
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" class="btn prev-step"> <spring:message code="form.back"/></button>
+                    <button type="button" class="btn next-step"> <spring:message code="form.further"/></button>
                 </div>
             </div>
 
 
             <!-- STEP 4 -->
             <div data-step="3">
-                <h3>Wybierz organizacje, której chcesz pomóc:</h3>
+                <h3> <spring:message code="form.STOYWTH"/></h3>
                 <c:forEach varStatus="theCount" items="${institutions}" var="institution" step="1">
                     <div class="form-group form-group--checkbox">
                         <label>
@@ -125,69 +121,68 @@
                     </div>
                 </c:forEach>
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button type="button" class="btn prev-step"> <spring:message code="form.back"/></button>
+                    <button type="button" class="btn next-step"> <spring:message code="form.further"/></button>
                 </div>
             </div>
             <!-- STEP 5 -->
             <div data-step="4">
-                <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
+                <h3> <spring:message code="form.ETABTC"/></h3>
 
                 <div class="form-section form-section--columns">
                     <div class="form-section--column">
-                        <h4>Adres odbioru</h4>
+                        <h4> <spring:message code="form.PA"/></h4>
                         <div class="form-group form-group--inline">
-                            <label> Ulica <input type="text" name="street" id="street"/> </label>
+                            <label>  <spring:message code="form.street"/><input type="text" name="street" id="street"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Miasto <input type="text" name="city"  id="city"  /> </label>
+                            <label>  <spring:message code="form.city"/><input type="text" name="city"  id="city"  /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <input type="text" name="zipCode" id="zipCode"/>
+                                <spring:message code="form.PC"/><input type="text" name="zipCode" id="zipCode"/>
                             </label>
                         </div>
-
                                                     <div class="form-group form-group--inline">
                                                         <label>
-                                                            Numer telefonu <input type="text" name="phoneNumber" id="phoneNumber" />
+                                                            <spring:message code="form.PH"/><input type="text" name="phoneNumber" id="phoneNumber" />
                                                         </label>
                                                     </div>
                     </div>
 
                     <div class="form-section--column">
-                        <h4>Termin odbioru</h4>
+                        <h4> <spring:message code="form.DOR"/></h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <input type="date" name="pickUpDate" id="pickUpDate"/> </label>
+                            <label>  <spring:message code="form.date"/><input type="date" name="pickUpDate" id="pickUpDate"/></label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <input type="time" name="pickUpTime" id="pickUpTime"/> </label>
+                            <label>  <spring:message code="form.hour"/><input type="time" name="pickUpTime" id="pickUpTime"/></label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Uwagi dla kuriera
+                                <spring:message code="form.NFTC"/>
                                 <textarea name="pickUpComment" rows="5" id="pickUpComment"></textarea>
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step lastButton">Dalej</button>
+                    <button type="button" class="btn prev-step"> <spring:message code="form.back"/></button>
+                    <button type="button" class="btn next-step lastButton"> <spring:message code="form.further"/></button>
                 </div>
             </div>
 
             <!-- STEP 6 -->
             <div data-step="5">
-                <h3>Podsumowanie Twojej darowizny</h3>
+                <h3> <spring:message code="form.SOYD"/></h3>
 
                 <div class="summary">
                     <div class="form-section">
-                        <h4>Oddajesz:</h4>
+                        <h4> <spring:message code="form.YGA"/></h4>
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
@@ -206,7 +201,7 @@
 
                     <div class="form-section form-section--columns">
                         <div class="form-section--column">
-                            <h4>Adres odbioru:</h4>
+                            <h4> <spring:message code="form.PA"/>:</h4>
                             <ul>
                                 <li class="street"></li>
                                 <li class="city"></li>
@@ -216,7 +211,7 @@
                         </div>
 
                         <div class="form-section--column">
-                            <h4>Termin odbioru:</h4>
+                            <h4> <spring:message code="form.DOR"/>:</h4>
                             <ul>
                                 <li class="date"></li>
                                 <li class="pickUpTime"></li>
@@ -227,8 +222,8 @@
                 </div>
 
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="submit" class="btn">Potwierdzam</button>
+                    <button type="button" class="btn prev-step"> <spring:message code="form.back"/></button>
+                    <button type="submit" class="btn"> <spring:message code="form.confirm"/></button>
                 </div>
             </div>
             <sec:csrfInput/>
