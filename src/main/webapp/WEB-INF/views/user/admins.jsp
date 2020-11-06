@@ -46,7 +46,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col"><spring:message code="admins.email"/></th>
-            <th scope="col"><spring:message code="admins.EF"/></th>
+<%--            <th scope="col"><spring:message code="admins.EF"/></th>--%>
             <th scope="col"><spring:message code="admins.EE"/></th>
             <th scope="col"><spring:message code="admins.removal"/></th>
         </tr>
