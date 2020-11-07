@@ -19,7 +19,7 @@
 </header>
 
 <section class="login-page">
-    <h2><spring:message code="register.CAA"/>Załóż konto</h2>
+    <h2><spring:message code="register.CAA"/></h2>
     <form:form action="/register" method="post" modelAttribute="userDTO">
         <div class="form-group">
             <input type="email" name="email" placeholder="<spring:message code="register.email"/>"/>
