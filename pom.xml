@@ -11,12 +11,11 @@
     <groupId>pl.coderslab</groupId>
     <artifactId>charity</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>charity</name>
     <description>Charity project, created with love in CodersLab</description>
-
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>13</java.version>
     </properties>
 
     <dependencies>
@@ -70,13 +69,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
             <version>5.0.6.RELEASE</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
@@ -86,7 +83,6 @@
             <artifactId>freemarker</artifactId>
             <version>2.3.30</version>
         </dependency>
-
     </dependencies>
     <build>
         <plugins>
