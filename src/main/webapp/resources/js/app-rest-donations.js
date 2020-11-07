@@ -1,5 +1,6 @@
 $(function () {
-    let BASE_URL = 'http://localhost:8080';
+    // let BASE_URL = 'http://localhost:8080';
+    let BASE_URL = 'https://charity-web-service.herokuapp.com';
     let URL = '/api/donations/';
 
     function ajax() {

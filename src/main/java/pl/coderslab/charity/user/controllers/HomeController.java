@@ -1,13 +1,9 @@
-package pl.coderslab.charity.donation.controllers.views;
-
+package pl.coderslab.charity.user.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 import pl.coderslab.charity.donation.service.DonationService;
 import pl.coderslab.charity.institution.entity.Institution;
 import pl.coderslab.charity.institution.service.InstitutionService;
@@ -20,16 +16,24 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-public class DonationsViewController {
+public class HomeController {
 
-    private final UserService userService;
     private final InstitutionService institutionService;
 
     private final DonationService donationService;
 
-    @RequestMapping("/user/donations")
-    public String viewInstitutions(Model model, Principal principal) {
-        return "user/donations";
+    private final UserService userService;
+
+    @RequestMapping("/")
+    public String homeAction(Principal principal) {
+        if (principal != null) {
+            User user = userService.getUserByEmail(principal.getName());
+            if (user.getRole().equals("ROLE_ADMIN")) {
+                return "redirect:/admin";
+            }
+
+        }
+        return "user/home";
     }
 
     @ModelAttribute("institutions")
@@ -47,6 +51,5 @@ public class DonationsViewController {
     public Integer numberOfDonations() {
         return donationService.getListSize();
     }
-
 
 }

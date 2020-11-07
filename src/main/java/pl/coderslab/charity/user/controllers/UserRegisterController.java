@@ -52,7 +52,7 @@ public class UserRegisterController {
 
         log.info("User saved: " + user.getId());
 
-        return "redirect:/";
+        return "redirect:/register/confirm";
     }
 
 
