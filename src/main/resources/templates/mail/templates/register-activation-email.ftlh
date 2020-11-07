@@ -12,7 +12,8 @@
 --------------------------------------------------------------------------------------------------------<br>
 
 
-<a href="http://localhost:8080/activation/${id}/${token}" >Aktywacja Konta</a>
+<#--<a href="http://localhost:8080/activation/${id}/${token}" >Aktywacja Konta</a>-->
+<a href="https://charity-web-service.herokuapp.com/activation/${id}/${token}" >Aktywacja Konta</a>
 
 
 --------------------------------------------------------------------------------------------------------<br>

@@ -12,7 +12,8 @@
 --------------------------------------------------------------------------------------------------------<br>
 
 
-<a href="http://localhost:8080/resetPassword/${id}/${token}" >Aktywacja Konta</a>
+<#--<a href="http://localhost:8080/resetPassword/${id}/${token}" >Aktywacja Konta</a>-->
+<a href="https://charity-web-service.herokuapp.com/resetPassword/${id}/${token}" >Aktywacja Konta</a>
 
 
 --------------------------------------------------------------------------------------------------------<br>

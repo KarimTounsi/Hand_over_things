@@ -51,6 +51,7 @@ public class UserRegisterController {
         emailService.sendRegisterEmail(user);
 
         log.info("User saved: " + user.getId());
+
         return "redirect:/";
     }
 
