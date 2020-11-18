@@ -14,7 +14,7 @@ public interface DonationService {
     Integer getSumOfQuantity();
 
     Integer getListSize();
-    void saveDonation(DonationDTO donationDTO, Principal principal);
+    void saveDonation(DonationDTO donationDTO, User user);
 
     List<Donation> getAllByUser(User user);
     Optional<Donation> getById(Long id);

@@ -18,4 +18,6 @@ public interface InstitutionService {
 
     Institution saveInstitutionFromDTO(InstitutionDTO institutionDTO);
 
+    Institution getInstitutionById(Long id);
+
 }

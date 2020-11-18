@@ -12,8 +12,10 @@ import pl.coderslab.charity.donation.DTOS.DonationDTO;
 import pl.coderslab.charity.donation.service.DonationService;
 import pl.coderslab.charity.institution.entity.Institution;
 import pl.coderslab.charity.institution.service.InstitutionService;
+import pl.coderslab.charity.user.repository.UserRepository;
 
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -23,6 +25,7 @@ public class DonationFormController {
     private final CategoryService categoryService;
     private final InstitutionService institutionService;
     private final DonationService donationService;
+    private final UserRepository userRepository;
 
 
     @GetMapping("/user/donation/form")
@@ -34,9 +37,10 @@ public class DonationFormController {
     }
 
     @PostMapping("/user/donation/form")
-    public String saveDonation(DonationDTO donationDTO, Principal principal) {
+    public String saveDonation(DonationDTO donationDTO , Principal principal) {
 
-        donationService.saveDonation(donationDTO, principal);
+
+        donationService.saveDonation(donationDTO ,userRepository.findUserByEmail(principal.getName()));
 
         return "redirect:/user/donation/confirm";
     }

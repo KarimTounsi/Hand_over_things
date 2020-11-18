@@ -1,16 +1,21 @@
 package pl.coderslab.charity.donation.DTOS;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.category.entity.Category;
 import pl.coderslab.charity.institution.entity.Institution;
-import pl.coderslab.charity.user.entity.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class DonationDTO {
 
     private Long id;
