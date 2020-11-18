@@ -1,8 +1,6 @@
 package pl.coderslab.charity.category.entity;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -13,6 +11,8 @@ import javax.transaction.Transactional;
 @Getter
 @Setter
 @Table(name = "categories")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Category {
 
     @Id

@@ -9,4 +9,6 @@ public interface InstitutionRepository extends JpaRepository<Institution, Long> 
 
     List<Institution> findAllByStatusOrderById(boolean status);
 
+    Institution findInstitutionById(Long id);
+
 }
