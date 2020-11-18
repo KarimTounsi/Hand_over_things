@@ -19,6 +19,7 @@ Online service Web App. Admin manage users, ather admins and institutions. clien
 * Hibernate
 * JavaScript
 * JQuery
+* JSON, Ajax
 * Lombok
 * freemarker
 * JavaServer Pages
