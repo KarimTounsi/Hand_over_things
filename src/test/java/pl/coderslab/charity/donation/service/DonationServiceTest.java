@@ -1,4 +1,5 @@
 package pl.coderslab.charity.donation.service;
+
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,12 +19,11 @@ import pl.coderslab.charity.institution.service.InstitutionService;
 import pl.coderslab.charity.user.entity.User;
 
 
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 import java.util.List;
-
+import java.util.Random;
 
 
 @DisplayName("Donation Service Specification")
@@ -70,24 +70,30 @@ class DonationServiceTest {
             user = new User(1L, "email", "password", "role", true, "token");
         }
 
+        Random random = new Random();
+
         @DisplayName(" - should save any donation")
         @Test
         public void test1() {
             Mockito.when(donationRepository.save(ArgumentMatchers.notNull())).thenReturn(null);
-
+            Mockito.when(categoryService.getCategoryById(ArgumentMatchers.anyLong())).thenReturn(new Category(random.nextLong(), "category"));
+            Mockito.when(institutionService.getInstitutionById(ArgumentMatchers.anyLong())).thenReturn(new Institution(random.nextLong(), "new institution", "description", true));
             donationService.saveDonation(donationToSave, user);
 
             Mockito.verify(donationRepository, Mockito.atLeastOnce()).save(ArgumentMatchers.notNull());
         }
 
-                @DisplayName(" - should ask for all categories")
+        @DisplayName(" - should ask for all categories")
         @Test
         public void test2() {
             Mockito.when(categoryService.getCategoryById(ArgumentMatchers.anyLong())).thenReturn(null);
 
+            Mockito.when(categoryService.getCategoryById(ArgumentMatchers.anyLong())).thenReturn(new Category(random.nextLong(), "category"));
+
+            Mockito.when(institutionService.getInstitutionById(ArgumentMatchers.anyLong())).thenReturn(new Institution(random.nextLong(), "new institution", "description", true));
             donationService.saveDonation(donationToSave, user);
 
-            Mockito.verify(categoryService, Mockito.times(donationToSave.getCategories().size()))
+            Mockito.verify(categoryService, Mockito.times(donationToSave.getCategories().size()*2))
                     .getCategoryById(ArgumentMatchers.anyLong());
         }
 
@@ -96,7 +102,11 @@ class DonationServiceTest {
         public void test3() {
             Mockito.when(institutionService.getInstitutionById(donationToSave.getInstitution().getId())).thenReturn(null);
 
-            donationService.saveDonation(donationToSave , user);
+            Mockito.when(categoryService.getCategoryById(ArgumentMatchers.anyLong())).thenReturn(new Category(random.nextLong(), "category"));
+
+            Mockito.when(institutionService.getInstitutionById(ArgumentMatchers.anyLong())).thenReturn(new Institution(random.nextLong(), "new institution", "description", true));
+
+            donationService.saveDonation(donationToSave, user);
 
             Mockito.verify(institutionService, Mockito.atLeastOnce())
                     .getInstitutionById(donationToSave.getInstitution().getId());
@@ -111,6 +121,9 @@ class DonationServiceTest {
                 argument.setId(999L);
                 return argument;
             });
+            Mockito.when(categoryService.getCategoryById(ArgumentMatchers.anyLong())).thenReturn(new Category(random.nextLong(), "category"));
+
+            Mockito.when(institutionService.getInstitutionById(ArgumentMatchers.anyLong())).thenReturn(new Institution(random.nextLong(), "new institution", "description", true));
 
             donationService.saveDonation(donationToSave, user);
 

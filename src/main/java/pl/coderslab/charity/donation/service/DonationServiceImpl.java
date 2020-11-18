@@ -67,7 +67,7 @@ public class DonationServiceImpl implements DonationService {
 
         if (institutionService.getInstitutionById(donationDTO.getInstitution().getId()) !=null){
             donation.setInstitution(institutionService.getInstitutionById(donationDTO.getInstitution().getId()));
-        } else {
+        } else{
             throw new RuntimeException();
         }
 
