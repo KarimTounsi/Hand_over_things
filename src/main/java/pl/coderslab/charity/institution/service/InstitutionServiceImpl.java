@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.institution.DTOS.InstitutionDTO;
 import pl.coderslab.charity.institution.entity.Institution;
+import pl.coderslab.charity.institution.exceptions.ObjectNotFoundException;
 import pl.coderslab.charity.institution.repository.InstitutionRepository;
 
 import javax.transaction.Transactional;
@@ -33,12 +34,13 @@ public class InstitutionServiceImpl implements InstitutionService {
     }
 
     @Override
-    public Institution saveInstitutionFromDTO(InstitutionDTO institutionDTO) {
+    public InstitutionDTO saveInstitutionFromDTO(InstitutionDTO institutionDTO) {
         Institution institution = new Institution();
         institution.setStatus(institutionDTO.isStatus());
         institution.setDescription(institutionDTO.getDescription());
         institution.setName(institutionDTO.getName());
-        return institutionRepository.save(institution);
+        Institution institutionSaved = institutionRepository.save(institution);
+        return institutionDTO;
     }
 
     @Override
@@ -47,8 +49,34 @@ public class InstitutionServiceImpl implements InstitutionService {
     }
 
     @Override
+    public Institution update(Institution institution) {
+
+        Institution institutionInDb = institutionRepository.findInstitutionById(institution.getId());
+        institutionInDb.setName(institution.getName());
+        institutionInDb.setDescription(institution.getDescription());
+        Institution institutionSaved = institutionRepository.save(institutionInDb);
+        return institutionSaved;
+    }
+
+    @Override
+    public Institution delete(Long id) {
+
+        Institution institutionInDb = institutionRepository.findInstitutionById(id);
+        institutionInDb.setStatus(false);
+        Institution institutionDeleted = institutionRepository.save(institutionInDb);
+        return institutionDeleted;
+    }
+
+    @Override
     public Optional<Institution> getById(Long id) {
         return institutionRepository.findById(id);
+    }
+
+
+    public Institution findInstitutionById(Long id) {
+        Optional<Institution> optionalInstitution = institutionRepository.findById(id);
+        if (optionalInstitution.isEmpty()) throw new ObjectNotFoundException("not.found.institution");
+        return optionalInstitution.get();
     }
 
 

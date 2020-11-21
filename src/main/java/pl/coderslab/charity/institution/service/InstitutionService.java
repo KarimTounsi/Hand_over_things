@@ -16,8 +16,13 @@ public interface InstitutionService {
 
     Optional<Institution> getById(Long id);
 
-    Institution saveInstitutionFromDTO(InstitutionDTO institutionDTO);
+    InstitutionDTO saveInstitutionFromDTO(InstitutionDTO institutionDTO);
 
     Institution getInstitutionById(Long id);
+
+    Institution update(Institution institution);
+    Institution delete(Long id);
+
+    Institution  findInstitutionById(Long id);
 
 }

@@ -1,5 +1,6 @@
 package pl.coderslab.charity.donation.controllers;
 
+import javassist.tools.rmi.ObjectNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +38,7 @@ public class DonationFormController {
     }
 
     @PostMapping("/user/donation/form")
-    public String saveDonation(DonationDTO donationDTO , Principal principal) {
+    public String saveDonation(DonationDTO donationDTO , Principal principal) throws ObjectNotFoundException {
 
 
         donationService.saveDonation(donationDTO ,userRepository.findUserByEmail(principal.getName()));
