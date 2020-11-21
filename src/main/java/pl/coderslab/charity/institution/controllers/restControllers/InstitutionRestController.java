@@ -10,6 +10,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.institution.entity.Institution;
 import pl.coderslab.charity.institution.DTOS.InstitutionDTO;
+import pl.coderslab.charity.institution.exceptions.ObjectNotFoundException;
 import pl.coderslab.charity.institution.service.InstitutionService;
 
 import javax.validation.Valid;
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/institution")
 @RequiredArgsConstructor
 @Slf4j
-public class InstitutionController {
+public class InstitutionRestController {
 
     private final InstitutionService institutionService;
 
@@ -53,31 +54,33 @@ public class InstitutionController {
                 e.printStackTrace();
             }
         }
-        Institution saved = institutionService.saveInstitutionFromDTO(institutionDTO);
+        InstitutionDTO saved = institutionService.saveInstitutionFromDTO(institutionDTO);
         return ResponseEntity.created(URI.create("/api/institutions/" + saved.getId()))
                 .build();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getOne(@PathVariable Long id) {
-        Optional<Institution> optionalInstitution = institutionService.getById(id);
-        if (optionalInstitution.isPresent()) {
-            Institution institution = optionalInstitution.get();
-            return ResponseEntity.ok(institution);
-        } else {
+    public ResponseEntity getOne(@PathVariable Long id){
+
+        try {
+            Institution institution = institutionService.findInstitutionById(id);
+            if (institution != null) {
+                return ResponseEntity.ok(institution);
+            }
+        }catch (ObjectNotFoundException o){
             return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.notFound().build();
+
     }
 
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteOne(@PathVariable Long id) {
-        Optional<Institution> optionalInstitution = institutionService.getById(id);
-        if (optionalInstitution.isPresent()) {
-            Institution institution = optionalInstitution.get();
-            institution.setStatus(false);
-            institutionService.saveInstitution(institution);
-            return ResponseEntity.ok(institution);
+
+      Institution InstitutionDeleted = institutionService.delete(id);
+        if (InstitutionDeleted != null) {
+            return ResponseEntity.ok(InstitutionDeleted);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -85,14 +88,8 @@ public class InstitutionController {
 
     @PutMapping("/{id}")
     public ResponseEntity updateOne(@RequestBody Institution institution) {
-        Optional<Institution> optionalInstitution = institutionService.getById(institution.getId());
-        if (optionalInstitution.isPresent()) {
-            Institution institutionInDb = optionalInstitution.get();
-            institutionInDb.setName(institution.getName());
-            institutionInDb.setDescription(institution.getDescription());
-            institutionService.saveInstitution(institutionInDb);
-        }
-        return ResponseEntity.noContent().build();
+        Institution institutionUpdated = institutionService.update(institution);
+        return ResponseEntity.ok(institutionUpdated);
     }
 
 

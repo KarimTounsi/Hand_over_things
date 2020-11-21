@@ -1,5 +1,5 @@
-// let BASE_URL = 'http://localhost:8080';
-let BASE_URL = 'https://charity-web-service.herokuapp.com';
+let BASE_URL = 'http://localhost:8080';
+// let BASE_URL = 'https://charity-web-service.herokuapp.com';
 let URL = '/api/user/';
 
 function getAllUsers(role) {
