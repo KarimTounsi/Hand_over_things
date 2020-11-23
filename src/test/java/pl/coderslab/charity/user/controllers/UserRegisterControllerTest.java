@@ -60,7 +60,7 @@ public class UserRegisterControllerTest {
     private final String password = "Password123!1";
 
     @Before
-    public void setUp2() throws UnsupportedEncodingException, NoSuchAlgorithmException {
+    public void setUp() throws UnsupportedEncodingException, NoSuchAlgorithmException {
         mockMvc = webAppContextSetup(webApplicationContext).build();
 
         when(validationEmailService.checkUniqueEmail(email)).thenReturn(true);
@@ -101,7 +101,6 @@ public class UserRegisterControllerTest {
 
     @Test
     public void when_save_valid_data_then_redirect() throws Exception {
-        String password = "Password123!1";
         mockMvc.perform(post("/register").param("email", email)
                 .param("password", password).param("passwordCheck", password))
                 .andExpect(redirectedUrl("/register/confirm"))
